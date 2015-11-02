@@ -1,0 +1,39 @@
+{% extends "mandelbrot/base.html" %}
+
+{% block "content" %}
+    <div id="main" class="usa-grid">
+      <div class="usa-width-full">
+        <h1>Onboarding for {{expert.name}}</h1>
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Process</th>
+              <th scope="col">Description</th>
+              <th scope="col">Complete</th>
+            </tr>
+          </thead>
+          <tbody>
+{% for step in expert.onboardings.all %}
+            <tr>
+              <td scope="row">
+{% if step.done %}
+                  <img height="20px" src="/static/img/alerts/success.png" alt="" />
+{% else %}
+                  <a href="/onboard/{{expert.id}}/{{step.id}}" >Process</a>
+{% endif %}
+              </td>
+              <td>{{step.step.description}}</td>
+              <td>
+{% if step.done %}
+                  <span class="usa-label">Complete</span>
+{% else %}
+                  <span class="usa-label">Incomplete</span>
+{% endif %}
+              </td>
+            </tr>
+{% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+{% endblock %}

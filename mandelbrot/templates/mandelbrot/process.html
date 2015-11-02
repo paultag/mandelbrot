@@ -1,0 +1,28 @@
+{% extends "mandelbrot/base.html" %}
+
+{% block "content" %}
+    <div id="main" class="usa-grid">
+      <div class="usa-width-full">
+        <h1>{{step.step.description}} for {{expert.name}}</h1>
+
+        {% if errors %}
+            {% for error in errors %}
+<div class="usa-alert usa-alert-error" role="alert">
+    <div class="usa-alert-body">
+        <h3 class="usa-alert-heading">Slack API Error</h3>
+        <p class="usa-alert-text">{{error}}.</p>
+    </div>
+</div>
+
+            {% endfor %}
+        {% endif %}
+
+        {% if step.step.action %}
+        <p>
+            Click the following link to get the server to take action needed to
+            complete the task. <code>{{step.step.action}}</code>
+        </p>
+        {% endif %}
+      </div>
+    </div>
+{% endblock %}

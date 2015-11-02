@@ -1,0 +1,5 @@
+*swp
+*pyc
+*mandelbrot*egg*
+db.sqlite3
+__pycache__
