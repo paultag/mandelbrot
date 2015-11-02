@@ -7,6 +7,9 @@
       </div>
       <div class="usa-width-one-half">
         <h1>{{expert.name}}</h1>
+        {% for role in expert.roles.all %}{% if role.icon %}
+            <i class="fa fa-{{role.icon}}"></i>
+        {% endif %}{% endfor %}
       </div>
     </div>
 {% endblock %}
