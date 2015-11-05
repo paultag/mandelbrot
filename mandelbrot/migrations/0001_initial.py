@@ -13,7 +13,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Expert',
             fields=[
-                ('id', models.AutoField(auto_created=True, serialize=False, verbose_name='ID', primary_key=True)),
+                ('id', models.CharField(serialize=False, primary_key=True, max_length=128)),
                 ('name', models.CharField(max_length=128)),
                 ('va_email', models.EmailField(max_length=254)),
                 ('foiable_email', models.EmailField(max_length=254)),
@@ -22,7 +22,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='GithubTeam',
             fields=[
-                ('id', models.AutoField(auto_created=True, serialize=False, verbose_name='ID', primary_key=True)),
+                ('id', models.AutoField(serialize=False, primary_key=True, verbose_name='ID', auto_created=True)),
                 ('org', models.CharField(max_length=128)),
                 ('team', models.CharField(max_length=128)),
             ],
@@ -30,22 +30,22 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='OnboardingStep',
             fields=[
-                ('id', models.AutoField(auto_created=True, serialize=False, verbose_name='ID', primary_key=True)),
+                ('id', models.AutoField(serialize=False, primary_key=True, verbose_name='ID', auto_created=True)),
                 ('done', models.BooleanField()),
             ],
         ),
         migrations.CreateModel(
             name='Role',
             fields=[
-                ('id', models.AutoField(auto_created=True, serialize=False, verbose_name='ID', primary_key=True)),
+                ('id', models.AutoField(serialize=False, primary_key=True, verbose_name='ID', auto_created=True)),
                 ('name', models.CharField(max_length=128)),
-                ('icon', models.CharField(max_length=32)),
+                ('icon', models.CharField(max_length=32, blank=True)),
             ],
         ),
         migrations.CreateModel(
             name='SlackChannel',
             fields=[
-                ('id', models.AutoField(auto_created=True, serialize=False, verbose_name='ID', primary_key=True)),
+                ('id', models.AutoField(serialize=False, primary_key=True, verbose_name='ID', auto_created=True)),
                 ('team', models.CharField(max_length=128)),
                 ('channel', models.CharField(max_length=128)),
                 ('roles', models.ManyToManyField(related_name='slacks', to='mandelbrot.Role')),
@@ -54,21 +54,21 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Step',
             fields=[
-                ('id', models.AutoField(auto_created=True, serialize=False, verbose_name='ID', primary_key=True)),
+                ('id', models.AutoField(serialize=False, primary_key=True, verbose_name='ID', auto_created=True)),
                 ('description', models.CharField(max_length=256)),
-                ('action', models.CharField(blank=True, max_length=256)),
+                ('action', models.CharField(max_length=256, blank=True)),
                 ('roles', models.ManyToManyField(related_name='steps', to='mandelbrot.Role')),
             ],
         ),
         migrations.AddField(
             model_name='onboardingstep',
             name='step',
-            field=models.ForeignKey(to='mandelbrot.Step', related_name='onboardings'),
+            field=models.ForeignKey(related_name='onboardings', to='mandelbrot.Step'),
         ),
         migrations.AddField(
             model_name='onboardingstep',
             name='who',
-            field=models.ForeignKey(to='mandelbrot.Expert', related_name='onboardings'),
+            field=models.ForeignKey(related_name='onboardings', to='mandelbrot.Expert'),
         ),
         migrations.AddField(
             model_name='githubteam',
@@ -83,6 +83,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='expert',
             name='steps',
-            field=models.ManyToManyField(through='mandelbrot.OnboardingStep', to='mandelbrot.Step'),
+            field=models.ManyToManyField(to='mandelbrot.Step', through='mandelbrot.OnboardingStep'),
         ),
     ]

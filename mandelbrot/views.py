@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 # from .utils import invite_to_slack
-from .models import Expert, OnboardingStep
+from .models import Expert, OnboardingStep, Office
 
 # Create your views here.
 
@@ -10,6 +10,10 @@ def home(request):
 def expert(request, name):
     who = Expert.objects.get(pk=name)
     return render(request, 'mandelbrot/expert.html', {"expert": who})
+
+def office(request, id):
+    office = Office.objects.get(pk=id)
+    return render(request, 'mandelbrot/office.html', {"office": office})
 
 def onboard(request, name):
     who = Expert.objects.get(pk=name)

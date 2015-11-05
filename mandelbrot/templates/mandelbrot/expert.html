@@ -1,15 +1,15 @@
 {% extends "mandelbrot/base.html" %}
 
-{% block "content" %}
+{% block "main" %}
     <div id="main" class="usa-grid">
-      <div class="usa-width-one-half">
-          &nbsp;
-      </div>
-      <div class="usa-width-one-half">
+      <div class="usa-width-full">
         <h1>{{expert.name}}</h1>
-        {% for role in expert.roles.all %}{% if role.icon %}
-            <i class="fa fa-{{role.icon}}"></i>
-        {% endif %}{% endfor %}
+
+        <div class="usa-width-full">
+            {% for role in expert.roles.all %}{% if role.icon %}
+                <i class="fa fa-{{role.icon}}"></i>
+            {% endif %}{% endfor %}
+        </div>
       </div>
     </div>
 {% endblock %}

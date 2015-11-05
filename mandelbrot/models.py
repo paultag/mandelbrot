@@ -3,6 +3,7 @@ import importlib
 
 
 class Expert(models.Model):
+    id = models.CharField(max_length=128, primary_key=True)
     name = models.CharField(max_length=128)
     va_email = models.EmailField()
     foiable_email = models.EmailField()
@@ -19,6 +20,17 @@ class Expert(models.Model):
         for step in Step.objects.filter(roles__in=self.roles.all()).all():
             step.onboard(self)
         return
+
+
+class Office(models.Model):
+    id = models.CharField(max_length=128, primary_key=True)
+    name = models.CharField(max_length=128)
+    latitude = models.CharField(max_length=128)
+    longitude = models.CharField(max_length=128)
+    address = models.TextField()
+
+    def __str__(self):
+        return "<Office: {}>".format(self.name)
 
 
 class Role(models.Model):

@@ -1,11 +1,10 @@
 {% extends "mandelbrot/base.html" %}
 
-{% block "content" %}
+{% block "main" %}
     <div id="main" class="usa-grid">
         {% for expert in experts %}
           <div class="usa-width-one-fourth">
-              <h2>{{expert.name}}</h2>
-              <img src="/static/img/placeholder.png" />
+              <h2><a href='{% url "expert" expert.id %}'>{{expert.name}}</a></h2>
           </div>
           {% endfor %}
     </div>
