@@ -40,7 +40,7 @@ class ContactDetailInline(admin.TabularInline):
 
 class ExpertAdmin(admin.ModelAdmin):
     model = Expert
-    inlines = [ProjectMembershipInline, ContactDetailInline, OnboardingStepInline]
+    inlines = [ContactDetailInline, OnboardingStepInline]
 
 
 admin.site.register(Expert, ExpertAdmin)

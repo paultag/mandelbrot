@@ -72,6 +72,7 @@ class Project(models.Model):
     mission = models.TextField()
     active = models.BooleanField()
     experts = models.ManyToManyField('Expert', through='ProjectMember')
+    offices = models.ManyToManyField('Office', related_name="projects")
 
     def __str__(self):
         return "<Project '{}'>".format(self.name)
