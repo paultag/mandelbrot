@@ -1,0 +1,2 @@
+Django
+-e git+https://github.com/department-of-vertains-affairs/django-designstandards.git#egg=designstandards
