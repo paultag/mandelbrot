@@ -16,7 +16,7 @@ class Expert(models.Model):
         return "<Expert '{}'>".format(self.name)
 
     def get_active_memberships(self):
-        return self.memberships.filter(end_date=None)
+        return self.memberships.filter(end_date=None, project__active=True)
 
     def onboard(self):
         if self.onboardings.count() != 0:
@@ -81,7 +81,7 @@ class ProjectMember(models.Model):
     who = models.ForeignKey('Expert', related_name="memberships")
     project = models.ForeignKey('Project', related_name="memberships")
     start_date = models.DateField()
-    end_date = models.DateField(blank=True)
+    end_date = models.DateField(blank=True, null=True)
 
     def __str__(self):
         return "<ProjectMember '{}' in '{}'>".format(
