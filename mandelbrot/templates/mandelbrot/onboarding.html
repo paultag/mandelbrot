@@ -3,7 +3,7 @@
 {% block "main" %}
     <div id="main" class="usa-grid">
       <div class="usa-width-full">
-        <h1>Onboarding for {{expert.name}}</h1>
+        <h1>Onboarding for <a href="{% url "expert" expert.id %}" >{{expert.name}}</a></h1>
         <table>
           <thead>
             <tr>
