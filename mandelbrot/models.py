@@ -11,6 +11,7 @@ class Expert(models.Model):
     steps = models.ManyToManyField('Step', through='OnboardingStep')
     buddy = models.ForeignKey('Expert', related_name="buddies", null=True)
     projects = models.ManyToManyField('Project', through='ProjectMember')
+    public = models.BooleanField()
 
     def __str__(self):
         return "<Expert '{}'>".format(self.name)

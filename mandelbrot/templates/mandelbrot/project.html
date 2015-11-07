@@ -9,9 +9,18 @@
             <b>NOT ACTIVE</b>
         {% endif %}
 
+        Members
         <ul>
         {% for membership in project.get_active_memberships %}
             <li>{{membership.who.name}} since {{membership.start_date}}</li>
+        {% endfor %}
+        </ul>
+
+
+        Sometimes, we work from
+        <ul>
+        {% for office in project.offices.all %}
+            <li>{{office.name}}</li>
         {% endfor %}
         </ul>
       </div>
