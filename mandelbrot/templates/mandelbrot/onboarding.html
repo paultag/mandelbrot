@@ -14,12 +14,15 @@
           </thead>
           <tbody>
 {% for step in onboarding %}
+<form action="{% url "onboarding" expert.id %}" method="POST">
+    <input type="hidden" name="step" value="{{step.id}}" />
+{% csrf_token %}
             <tr>
               <td scope="row">
 {% if step.done %}
                   <img height="20px" src="/static/img/alerts/success.png" alt="" />
 {% else %}
-{% if step.step.action %}Process{% else %}I did this!{% endif %}
+<input type="submit" value="{% if step.step.action %}Process{% else %}I did this!{% endif %}" />
 {% endif %}
               </td>
               <td>{{step.step.description}}</td>
@@ -31,6 +34,7 @@
 {% endif %}
               </td>
             </tr>
+</form>
 {% endfor %}
           </tbody>
         </table>

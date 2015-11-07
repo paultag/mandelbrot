@@ -46,9 +46,29 @@ def office(request, id):
 
 @login_required
 def onboarding(request, expert):
-    who = Expert.objects.get(pk=expert)
-    onboardings = OnboardingStep.objects.filter(who=who)
-    return render(request, 'mandelbrot/onboarding.html', {
-        "onboarding": onboardings,
-        "expert": who,
-    })
+    if request.method == "POST":
+        done = lambda: redirect(onboarding, expert)
+        step = request.POST.get("step")
+        if step is None:
+            return done()
+
+        try:
+            step = OnboardingStep.objects.get(pk=step)
+        except OnboardingStep.NotFound:
+            return done()
+
+        if step.step.action:
+            resp = step.step.get_callable()(step)
+
+        step.done = True
+        step.save()
+
+        return done()
+
+    if request.method == "GET":
+        who = Expert.objects.get(pk=expert)
+        onboardings = OnboardingStep.objects.filter(who=who)
+        return render(request, 'mandelbrot/onboarding.html', {
+            "onboarding": onboardings,
+            "expert": who,
+        })
