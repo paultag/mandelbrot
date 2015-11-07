@@ -1,8 +1,6 @@
 from django.shortcuts import render, redirect
-# from .utils import invite_to_slack
 from .models import Expert, OnboardingStep, Office
 
-# Create your views here.
 
 def home(request):
     return render(request, 'mandelbrot/home.html', {"experts": Expert.objects.all()})
