@@ -1,0 +1,19 @@
+{% extends "mandelbrot/base.html" %}
+
+{% block "main" %}
+    <div id="main" class="usa-grid">
+      <div class="usa-width-full">
+        <h1>{{project.name}}</h1>
+
+        {% if not project.active %}
+            <b>NOT ACTIVE</b>
+        {% endif %}
+
+        <ul>
+        {% for membership in project.get_active_memberships %}
+            <li>{{membership.who.name}} since {{membership.start_date}}</li>
+        {% endfor %}
+        </ul>
+      </div>
+    </div>
+{% endblock %}

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Expert, OnboardingStep, Office
+from .models import Expert, OnboardingStep, Office, Project
 
 
 def home(request):
@@ -8,6 +8,10 @@ def home(request):
 def expert(request, name):
     who = Expert.objects.get(pk=name)
     return render(request, 'mandelbrot/expert.html', {"expert": who})
+
+def project(request, id):
+    who = Project.objects.get(pk=id)
+    return render(request, 'mandelbrot/project.html', {"project": who})
 
 def office(request, id):
     office = Office.objects.get(pk=id)

@@ -68,14 +68,18 @@ class Role(models.Model):
 
 
 class Project(models.Model):
+    id = models.CharField(max_length=128, primary_key=True)
     name = models.CharField(max_length=128)
     mission = models.TextField()
     active = models.BooleanField()
     experts = models.ManyToManyField('Expert', through='ProjectMember')
-    offices = models.ManyToManyField('Office', related_name="projects")
+    offices = models.ManyToManyField('Office', related_name="projects", blank=True)
 
     def __str__(self):
         return "<Project '{}'>".format(self.name)
+
+    def get_active_memberships(self):
+        return self.memberships.filter(end_date=None, project__active=True)
 
 
 class ProjectMember(models.Model):
