@@ -10,6 +10,8 @@ from mandelbrot.models import (
     ContactDetail,
     Project,
     ProjectMember,
+    Badge,
+    BadgeAward,
 )
 
 admin.site.register(Role)
@@ -24,6 +26,10 @@ admin.site.register(ContactDetail)
 
 admin.site.register(Project)
 admin.site.register(ProjectMember)
+
+
+admin.site.register(Badge)
+admin.site.register(BadgeAward)
 
 
 class OnboardingStepInline(admin.TabularInline):

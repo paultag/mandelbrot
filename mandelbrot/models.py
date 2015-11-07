@@ -77,11 +77,18 @@ class Badge(models.Model):
         return "<Badge '{}' ({})>".format(self.id, self.title)
 
 
-class Badges(models.Model):
+class BadgeAward(models.Model):
     who = models.ForeignKey('Expert', related_name="badges")
     badge = models.ForeignKey('Badge', related_name="recipiants")
     awarded_by = models.ForeignKey('Expert', related_name="badges_given")
     awarded_on = models.DateField()
+
+    def __str__(self):
+        return "<BadgeAward '{}' given to {} by {}>".format(
+            self.badge.id,
+            self.who.id,
+            self.awarded_by.id,
+        )
 
 
 class Project(models.Model):

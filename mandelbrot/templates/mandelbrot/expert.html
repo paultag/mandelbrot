@@ -25,6 +25,15 @@
         {% endif %}
 
         {% if not user.is_anonymous %}
+
+        Badges
+        <ul>
+        {% for badge in expert.badges.all %}
+            <li>{{badge.badge.title}}</li>
+        {% endfor %}
+        </ul>
+
+        Contact
         <ul>
         {% for contact in expert.contact_details.all %}
             <li>
