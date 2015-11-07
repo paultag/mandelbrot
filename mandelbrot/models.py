@@ -9,7 +9,7 @@ class Expert(models.Model):
     email = models.EmailField()
     roles = models.ManyToManyField('Role', related_name="experts")
     steps = models.ManyToManyField('Step', through='OnboardingStep')
-    buddy = models.ForeignKey('Expert', related_name="buddies", null=True)
+    buddy = models.ForeignKey('Expert', related_name="buddies", blank=True, null=True)
     projects = models.ManyToManyField('Project', through='ProjectMember')
     public = models.BooleanField()
 

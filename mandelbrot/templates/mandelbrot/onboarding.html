@@ -13,13 +13,13 @@
             </tr>
           </thead>
           <tbody>
-{% for step in expert.onboardings.all %}
+{% for step in onboarding %}
             <tr>
               <td scope="row">
 {% if step.done %}
                   <img height="20px" src="/static/img/alerts/success.png" alt="" />
 {% else %}
-                  <a href="/onboard/{{expert.id}}/{{step.id}}" >Process</a>
+{% if step.step.action %}Process{% else %}I did this!{% endif %}
 {% endif %}
               </td>
               <td>{{step.step.description}}</td>

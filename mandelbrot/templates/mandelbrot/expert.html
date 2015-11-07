@@ -17,10 +17,13 @@
         {% endfor %}
         </ul>
 
-        {% if expert.buddy %}
-            My buddy is {{expert.buddy.name}}
+        {% if not user.is_anonymous %}
+            {% if expert.buddy %}
+                My buddy is {{expert.buddy.name}}
+            {% endif %}
         {% endif %}
 
+        {% if not user.is_anonymous %}
         <ul>
         {% for contact in expert.contact_details.all %}
             <li>
@@ -32,6 +35,7 @@
             </li>
         {% endfor %}
         </ul>
+        {% endif %}
 
       </div>
     </div>

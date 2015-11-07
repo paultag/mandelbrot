@@ -7,13 +7,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('mandelbrot', '0010_auto_20151107_1914'),
+        ('mandelbrot', '0001_initial'),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='projectmember',
-            name='end_date',
-            field=models.DateField(blank=True, null=True),
+            model_name='expert',
+            name='buddy',
+            field=models.ForeignKey(to='mandelbrot.Expert', null=True, related_name='buddies', blank=True),
         ),
     ]

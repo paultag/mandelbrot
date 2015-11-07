@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+
 from .models import Expert, OnboardingStep, Office, Project
 
 
@@ -15,6 +17,9 @@ def experts(request):
 def expert(request, name):
     # Raise 404 on ! public unless logged in
     who = Expert.objects.get(pk=name)
+    if request.user.is_anonymous and who.public is False:
+        raise Expert.DoesNotExist("Expert matching query does not exist")
+
     return render(request, 'mandelbrot/expert.html', {"expert": who})
 
 # Project views
@@ -38,3 +43,12 @@ def office(request, id):
     return render(request, 'mandelbrot/office.html', {"office": office})
 
 # Onboarding views
+
+@login_required
+def onboarding(request, expert):
+    who = Expert.objects.get(pk=expert)
+    onboardings = OnboardingStep.objects.filter(who=who)
+    return render(request, 'mandelbrot/onboarding.html', {
+        "onboarding": onboardings,
+        "expert": who,
+    })
