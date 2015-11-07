@@ -69,6 +69,21 @@ class Role(models.Model):
         return "<Role '{}'>".format(self.name)
 
 
+class Badge(models.Model):
+    id = models.CharField(max_length=128, primary_key=True)
+    title = models.CharField(max_length=128)
+
+    def __str__(self):
+        return "<Badge '{}' ({})>".format(self.id, self.title)
+
+
+class Badges(models.Model):
+    who = models.ForeignKey('Expert', related_name="badges")
+    badge = models.ForeignKey('Badge', related_name="recipiants")
+    awarded_by = models.ForeignKey('Expert', related_name="badges_given")
+    awarded_on = models.DateField()
+
+
 class Project(models.Model):
     id = models.CharField(max_length=128, primary_key=True)
     name = models.CharField(max_length=128)
