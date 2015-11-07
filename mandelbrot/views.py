@@ -42,6 +42,13 @@ def office(request, id):
     office = Office.objects.get(pk=id)
     return render(request, 'mandelbrot/office.html', {"office": office})
 
+# Welcome
+
+@login_required
+def welcome(request, expert):
+    expert = Expert.objects.get(pk=expert)
+    return render(request, 'mandelbrot/welcome.html', {"expert": expert})
+
 # Onboarding views
 
 @login_required
