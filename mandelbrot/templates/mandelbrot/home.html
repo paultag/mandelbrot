@@ -2,8 +2,11 @@
 
 {% block "main" %}
     <div id="main" class="usa-grid">
-        <a href="{% url "experts" %}">Experts</a>
-        <a href="{% url "offices" %}">Offices</a>
-        <a href="{% url "projects" %}">Projects</a>
+      <div class="usa-width-full">
+          <a href="{% url "experts" %}">Experts</a>
+          <a href="{% url "offices" %}">Offices</a>
+          <a href="{% url "projects" %}">Projects</a>
+          <img src="/static/img/dsva_logo.svg" width="100%" height="100%">
+      </div>
     </div>
 {% endblock %}
