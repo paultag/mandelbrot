@@ -1,6 +1,6 @@
-#
 from mandelbrot.utils import invite_to_slack
 from mandelbrot.models import SlackChannel
+
 
 def invite(step):
     who = step.who
