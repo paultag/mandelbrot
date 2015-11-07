@@ -2,10 +2,11 @@
 
 {% block "main" %}
     <div id="main" class="usa-grid">
-        {% for expert in experts %}
-          <div class="usa-width-one-fourth">
-              <h2><a href='{% url "expert" expert.id %}'>{{expert.name}}</a></h2>
-          </div>
-          {% endfor %}
+        <h1>Team</h1>
+    {% for expert in experts %}
+      <div class="usa-width-one-third">
+          <a href='{% url "expert" expert.id %}'>{{expert.name}}</a>
+      </div>
+      {% endfor %}
     </div>
 {% endblock %}

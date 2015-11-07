@@ -5,13 +5,17 @@ import importlib
 class Expert(models.Model):
     id = models.CharField(max_length=128, primary_key=True)
     name = models.CharField(max_length=128)
-    va_email = models.EmailField()
-    foiable_email = models.EmailField()
+    email = models.EmailField()
     roles = models.ManyToManyField('Role', related_name="experts")
     steps = models.ManyToManyField('Step', through='OnboardingStep')
+    buddy = models.ForeignKey('Expert', related_name="buddies", null=True)
+    projects = models.ManyToManyField('Project', through='ProjectMember')
 
     def __str__(self):
         return "<Expert '{}'>".format(self.name)
+
+    def get_active_memberships(self):
+        return self.memberships.filter(end_date=None)
 
     def onboard(self):
         if self.onboardings.count() != 0:
@@ -20,6 +24,27 @@ class Expert(models.Model):
         for step in Step.objects.filter(roles__in=self.roles.all()).all():
             step.onboard(self)
         return
+
+
+CONTACT_TYPES = [
+    ("email", "E-Mail"),
+    ("phone", "Phone"),
+    ("fax", "Fax"),
+    ("twitter", "Twitter"),
+]
+
+
+class ContactDetail(models.Model):
+    who = models.ForeignKey('Expert', related_name="contact_details")
+    type = models.CharField(max_length=128, choices=CONTACT_TYPES)
+    label = models.CharField(max_length=128)
+    value = models.CharField(max_length=128)
+    note = models.CharField(max_length=128, blank=True)
+
+    def __str__(self):
+        return "<ContactDetail who='{}' type='{}' value='{}'>".format(
+            self.who.name, self.type, self.value
+        )
 
 
 class Office(models.Model):
@@ -39,6 +64,29 @@ class Role(models.Model):
 
     def __str__(self):
         return "<Role '{}'>".format(self.name)
+
+
+class Project(models.Model):
+    name = models.CharField(max_length=128)
+    mission = models.TextField()
+    active = models.BooleanField()
+    experts = models.ManyToManyField('Expert', through='ProjectMember')
+
+    def __str__(self):
+        return "<Project '{}'>".format(self.name)
+
+
+class ProjectMember(models.Model):
+    who = models.ForeignKey('Expert', related_name="memberships")
+    project = models.ForeignKey('Project', related_name="memberships")
+    start_date = models.DateField()
+    end_date = models.DateField(blank=True)
+
+    def __str__(self):
+        return "<ProjectMember '{}' in '{}'>".format(
+            self.who.name,
+            self.project.name,
+        )
 
 
 class OnboardingStep(models.Model):

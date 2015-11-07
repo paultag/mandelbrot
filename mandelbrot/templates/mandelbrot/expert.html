@@ -10,6 +10,29 @@
                 <i class="fa fa-{{role.icon}}"></i>
             {% endif %}{% endfor %}
         </div>
+
+        <ul>
+        {% for membership in expert.get_active_memberships %}
+            <li>{{membership.project.name}}</li>
+        {% endfor %}
+        </ul>
+
+        {% if expert.buddy %}
+            My buddy is {{expert.buddy.name}}
+        {% endif %}
+
+        <ul>
+        {% for contact in expert.contact_details.all %}
+            <li>
+                I can be reached via
+                {{contact.get_type_display}} at {{contact.value}}
+                {% if contact.note %}
+                    ({{contact.note}})
+                {% endif %}
+            </li>
+        {% endfor %}
+        </ul>
+
       </div>
     </div>
 {% endblock %}
