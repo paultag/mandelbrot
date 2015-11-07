@@ -6,6 +6,7 @@
     {% for expert in experts %}
       <div class="usa-width-one-third">
           <a href='{% url "expert" expert.id %}'>{{expert.name}}</a>
+          {{expert.title}}
           {% if expert.photo_url %}
           <img height=250 width=400 src="{{expert.photo_url}}" />
           {% else %}

@@ -6,6 +6,7 @@ class Expert(models.Model):
     id = models.CharField(max_length=128, primary_key=True)
     name = models.CharField(max_length=128)
     photo_url = models.URLField(blank=True)
+    title = models.CharField(max_length=128)
     email = models.EmailField()
     roles = models.ManyToManyField('Role', related_name="experts")
     steps = models.ManyToManyField('Step', through='OnboardingStep')
