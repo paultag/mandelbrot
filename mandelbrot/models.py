@@ -109,7 +109,10 @@ class Project(models.Model):
         return "<Project '{}'>".format(self.name)
 
     def get_active_memberships(self):
-        return self.memberships.filter(end_date=None, project__active=True)
+        return self.memberships.filter(end_date=None)
+
+    def get_inactive_memberships(self):
+        return self.memberships.filter(end_date__isnull=False)
 
 
 class ProjectMember(models.Model):
