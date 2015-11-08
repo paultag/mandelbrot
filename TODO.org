@@ -1,4 +1,0 @@
-* TODO Add in management command to add new experts
-* TODO Parse priorities.md to add projects
-* TODO Find a way to have actions not work on the web worker
-* TODO Style it so it's not bad
