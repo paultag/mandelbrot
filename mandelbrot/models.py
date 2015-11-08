@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.db import models
 import importlib
 
@@ -20,6 +21,10 @@ class Expert(models.Model):
 
     def get_active_memberships(self):
         return self.memberships.filter(end_date=None, project__active=True)
+
+    def get_inactive_memberships(self):
+        return self.memberships.filter(
+            Q(end_date__isnull=False) | Q(project__active=False))
 
     def onboard(self):
         if self.onboardings.count() != 0:

@@ -12,8 +12,16 @@
             {% endif %}{% endfor %}
         </div>
 
+        Active projects
         <ul>
         {% for membership in expert.get_active_memberships %}
+            <li>{{membership.project.name}}</li>
+        {% endfor %}
+        </ul>
+
+        inactive projects
+        <ul>
+        {% for membership in expert.get_inactive_memberships %}
             <li>{{membership.project.name}}</li>
         {% endfor %}
         </ul>
