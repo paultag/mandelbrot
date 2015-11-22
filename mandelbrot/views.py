@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 
-from .models import Expert, OnboardingStep, Office, Project
+from .models import Expert, Office, Project
 
 
 def home(request):
@@ -48,34 +48,3 @@ def office(request, id):
 def welcome(request, expert):
     expert = Expert.objects.get(pk=expert)
     return render(request, 'mandelbrot/welcome.html', {"expert": expert})
-
-# Onboarding views
-
-@login_required
-def onboarding(request, expert):
-    if request.method == "POST":
-        done = lambda: redirect(onboarding, expert)
-        step = request.POST.get("step")
-        if step is None:
-            return done()
-
-        try:
-            step = OnboardingStep.objects.get(pk=step)
-        except OnboardingStep.NotFound:
-            return done()
-
-        if step.step.action:
-            resp = step.step.get_callable()(step)
-
-        step.done = True
-        step.save()
-
-        return done()
-
-    if request.method == "GET":
-        who = Expert.objects.get(pk=expert)
-        onboardings = OnboardingStep.objects.filter(who=who)
-        return render(request, 'mandelbrot/onboarding.html', {
-            "onboarding": onboardings,
-            "expert": who,
-        })
