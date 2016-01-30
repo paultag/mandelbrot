@@ -1,14 +1,13 @@
 {% extends "mandelbrot/base.html" %}
 {% load markdown %}
+{% load human_list %}
 
 {% block "main" %}
     <div class="mdl-banner mdl-project">
       <div class="usa-grid">          
           <h3 class="usa-display">{{project.name}}</h3>
           <span class="mdl-meta"><i class="fa fa-rebel"></i> 
-{% for agency in project.agencies.all %}
-              {{agency.name}}
-{% endfor %}
+              {{project.agencies.all|human_list}}
           </span>
           <span class="mdl-meta"><i class="fa fa-users"></i> {{project.get_active_memberships|length}} DSEs</span>
 
