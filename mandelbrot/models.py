@@ -55,7 +55,7 @@ class Office(models.Model):
     latitude = models.CharField(max_length=128)
     longitude = models.CharField(max_length=128)
     address = models.TextField()
-    tips = models.TextField()
+    tips = models.TextField(blank=True)
 
     def __str__(self):
         return "<Office: {}>".format(self.name)
