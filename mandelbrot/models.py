@@ -115,6 +115,19 @@ class Agency(models.Model):
     def get_inactive_projects(self):
         return self.projects.filter(active=False)
 
+    def get_active_memberships(self):
+        return ProjectMember.objects.filter(
+            project__agencies=self,
+            project__active=True,
+            end_date=None
+        )
+
+    def get_active_experts(self):
+        return Expert.objects.filter(
+            memberships__project__agencies=self,
+            memberships__project__active=True,
+            memberships__end_date=None
+        ).distinct()
 
 
 class Project(models.Model):
