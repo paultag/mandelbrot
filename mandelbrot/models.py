@@ -117,6 +117,7 @@ class Project(models.Model):
     active = models.BooleanField()
     experts = models.ManyToManyField('Expert', through='ProjectMember')
     offices = models.ManyToManyField('Office', related_name="projects", blank=True)
+    agencies = models.ManyToManyField('Agency', related_name="projects")
 
     def __str__(self):
         return "<Project '{}'>".format(self.name)
