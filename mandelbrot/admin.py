@@ -1,5 +1,6 @@
 from django.contrib import admin
 from mandelbrot.models import (
+    Agency,
     Expert,
     Role,
     Interest,
@@ -14,6 +15,7 @@ from mandelbrot.models import (
 admin.site.register(Role)
 admin.site.register(Interest)
 
+admin.site.register(Agency)
 admin.site.register(Office)
 admin.site.register(ContactDetail)
 

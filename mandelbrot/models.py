@@ -99,6 +99,10 @@ class BadgeAward(models.Model):
 
 
 class Agency(models.Model):
+    class Meta:
+        verbose_name = "agency"
+        verbose_name_plural = "agencies"
+
     id = models.CharField(max_length=128, primary_key=True)
     name = models.CharField(max_length=128)
 
