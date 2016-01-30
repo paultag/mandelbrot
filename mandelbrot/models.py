@@ -38,6 +38,7 @@ CONTACT_TYPES = [
     ("phone", "Phone"),
     ("fax", "Fax"),
     ("twitter", "Twitter"),
+    ("github", "GitHub"),
     ("yo", "Yo"),
 ]
 
