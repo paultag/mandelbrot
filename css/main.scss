@@ -1,0 +1,283 @@
+
+$color-mdl-red: #EB586F;
+$color-mdl-light-grey: #D8E9F0;
+$color-mdl-blue: #4AA0D5;
+$color-mdl-dark-grey: #454553;
+
+@import '_scss/all';
+
+// // Vendor -------------- //
+// @import '_scss/lib/bourbon/bourbon';
+// @import '_scss/lib/neat/neat';
+// @import '_scss/lib/normalize';
+
+
+// // Core -------------- //
+
+// @import '_scss/core/grid-settings';
+// @import '_scss/core/defaults';
+// @import '_scss/core/variables';
+// @import '_scss/core/base';
+// @import '_scss/core/grid';
+// @import '_scss/core/utilities';
+
+
+// // Elements -------------- //
+// // Styles basic html elements
+
+// @import '_scss/elements/typography';
+// @import '_scss/elements/inputs';
+// @import '_scss/elements/buttons';
+// @import '_scss/elements/table';
+// @import '_scss/elements/labels';
+
+
+// // Components -------------- //
+
+// @import '_scss/components/skipnav';
+// @import '_scss/components/footer';
+// @import '_scss/components/forms';
+// @import '_scss/components/alerts';
+
+
+
+html,body {
+    min-height: 100%;
+}
+body {
+    padding-bottom: 70px;
+}
+
+/*-----------------------------------*
+* CSS based on Web Design Guidelines.
+* - Uses Neat.bourbon.io as a grid
+* - Uses patterns and components
+*   from refills.bourbon.io/unstyled/
+*-----------------------------------*/
+
+body {
+    background-color: #f8f8f8;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+	font-family: $font-sans;
+}
+
+.blue-bg {
+    background-color: $color-mdl-blue;
+    color: white;
+}
+
+/*----------------------------------*
+* Globals, Resets, and overrides
+*-----------------------------------*/
+.mdl-txt-c {
+    text-align: center;
+}
+.mdl-txt-r {
+    text-align: right;
+}
+.mdl-txt-l {
+    text-align: left;
+}
+.mdl-txt-uc {
+    text-transform: uppercase;
+}
+.mdl-meta {
+    color: $color-gray-light;
+    font-weight: 300;
+} 
+
+/*
+Use mdl-push-row to wrap elements that float to the left
+or right
+*/
+
+.mdl-push-row {
+    @include clearfix;
+}
+
+.mdl-push-left {
+    float: left;
+}
+.mdl-push-right {
+    float: right;
+}
+/* ===========================*
+* Common components
+* ============================*/
+
+
+.mdl-social-block {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.social-p, .social-e, .social-gh {
+  width: rem(24px);
+  height: rem(24px);
+  padding: rem(10px);
+  background: center no-repeat;
+  background-color: $color-mdl-blue;
+  &:hover {
+    background-blend-mode: overlay;
+  }
+}
+.social-p {
+  background-image: url("../img/phone.png");
+  background-image: url("../img/phone.svg");
+}
+
+.social-e {
+  background-image: url("../img/email.png");
+  background-image: url("../img/email.svg");    
+}
+.social-gh {
+  background-image: url("../img/github.png");
+  background-image: url("../img/github.svg");    
+}
+
+/* ===========================*
+* Application navigation bar  *
+* ============================*/
+.mdl-nav {
+    background: $color-mdl-blue;
+    color: $color_white;
+    padding: rem(30px) 0;
+    position: relative;
+
+    .usa-grid {
+        position: relative;
+    }
+
+    .mdl-dropdown {
+        position: absolute;
+        right: rem(112px);
+    }
+}
+
+.mdl-logo {
+    color: $color-white;
+    margin-right: rem(20px);
+}
+
+.mdl-app-screen {
+    margin: auto;
+    width: 90%;
+}
+
+ul.mdl-nav-links {
+    display: inline-block;
+    float: right;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+ul.mdl-nav-links > li {
+  float: right;
+}
+ul.mdl-nav-links > li a {
+    color: $color_white;
+    display: inline-block;
+    text-align: center;
+    padding: rem(10px) rem(20px);
+    text-decoration: none;
+    &:hover {
+      color: darken($color_white, 10%)
+    }
+
+}
+
+
+/* ===========================*
+* Page Banner
+* ============================*/
+
+.mdl-banner {
+	background: $color-mdl-blue;
+    color: $color_white;
+    padding: rem(40px) 0;
+    position: relative;    
+    .usa-display {
+    	margin:0;
+    }
+	.usa-grid {
+		position: relative;
+    }
+}
+
+
+/*
+.mdl-app-segment represents a chunk of an application's
+page Should be an immediate child of .mdl-app. Avoid
+making .mdl-app-segment a grandchild element of .mdl-app.
+*/
+.mdl-app-segment {
+    // Clearfix
+    &::before, &::after {
+        content: ' ';
+        display: block;
+        clear:both;
+    }
+
+    &--alt {
+        background: $color-white;
+        border: 1px solid $color-gray-lighter;
+        padding: rem(30px);
+    }
+}
+
+// Adds top margin when .mdl-app-segment
+// is preceded by an element
+* + .mdl-app-segment {
+    margin-top: rem(30px);
+}
+
+// Make the top margin larger whenever
+// mdl-app-segment is the first-child
+.mdl-app-segment {
+    &:first-child {
+        margin-top: rem(40px);
+    }
+}
+
+
+/* ===========================*
+* Profile Page             
+* ============================*/
+.mdl-sidebar {
+    padding-right: rem(40px);
+	.mdl-pic {
+		border: 1px solid $color-gray-light;
+		border-radius: 3px;
+	}
+}
+
+
+/* ===========================*
+* Search Results           
+* ============================*/
+
+.mdl-result, .mdl-result:hover {
+    // padding: 0 rem(20px);
+    cursor: pointer;
+    .mdl-pic, .mdl-name, .mdl-meta, .mdl-social-block {
+      margin: 0;      
+    }
+    .mdl-pic {
+      padding: rem(20px);
+    }
+    .mdl-social-block {
+      padding: 0 rem(80px);
+      margin-bottom: rem(15px);
+    }  
+    .mdl-name {
+      font-weight: 500;
+      margin-bottom: rem(2px);
+    } 
+    .mdl-meta {
+      color: darken($color-white, 10%);
+    }        
+}
