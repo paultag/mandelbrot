@@ -8,7 +8,7 @@
       </div>
     </div>
 
-    {% for membership in agency.get_inactive_projects %}
+    {% for membership in agency.get_active_projects %}
     {{membership}}
     {% endfor %}
 
