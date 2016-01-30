@@ -109,6 +109,13 @@ class Agency(models.Model):
     def __str__(self):
         return "<Agency '{}'>".format(self.name)
 
+    def get_active_projects(self):
+        return self.projects.filter(active=True)
+
+    def get_inactive_projects(self):
+        return self.projects.filter(active=False)
+
+
 
 class Project(models.Model):
     id = models.CharField(max_length=128, primary_key=True)

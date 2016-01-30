@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 
-from .models import Expert, Office, Project
+from .models import Expert, Office, Project, Agency
 
 
 def home(request):
@@ -41,6 +41,16 @@ def offices(request):
 def office(request, id):
     office = Office.objects.get(pk=id)
     return render(request, 'mandelbrot/office.html', {"office": office})
+
+# Agency views
+
+def agencies(request):
+    agencies = Agency.objects.all()
+    return render(request, 'mandelbrot/agencies.html', {"agencies": agencies})
+
+def agency(request, id):
+    agency = Agency.objects.get(pk=id)
+    return render(request, 'mandelbrot/agency.html', {"agency": agency})
 
 # Welcome
 

@@ -12,4 +12,7 @@ urlpatterns = [
 
     url(r'^offices/$', mandelbrot.views.offices, name='offices'),
     url(r'^office/(?P<id>.*)/$', mandelbrot.views.office, name='office'),
+
+    url(r'^agencies/$', mandelbrot.views.agencies, name='agencies'),
+    url(r'^agency/(?P<id>.*)/$', mandelbrot.views.agency, name='agency'),
 ]

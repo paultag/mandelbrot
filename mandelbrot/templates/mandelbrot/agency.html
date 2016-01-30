@@ -1,0 +1,15 @@
+{% extends "mandelbrot/base.html" %}
+
+{% block "main" %}
+     <div id="map"></div>
+    <div id="main" class="usa-grid">
+      <div class="usa-width-full">
+        <h1>{{agency.name}}</h1>
+      </div>
+    </div>
+
+    {% for membership in agency.get_inactive_projects %}
+    {{membership}}
+    {% endfor %}
+
+{% endblock %}

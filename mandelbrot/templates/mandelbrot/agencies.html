@@ -1,0 +1,12 @@
+{% extends "mandelbrot/base.html" %}
+
+{% block "main" %}
+    <div id="main" class="usa-grid">
+        <h1>Agencies</h1>
+    {% for agency in agencies %}
+      <div class="usa-width-one-third">
+          <a href='{% url "agency" agency.id %}'>{{agency.name}}</a>
+      </div>
+      {% endfor %}
+    </div>
+{% endblock %}
