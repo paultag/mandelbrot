@@ -36,6 +36,13 @@
               <li><a href="{% url "expert" membership.who.id %}">{{membership.who.name}}<span class="mdl-meta"> (past)</span></a></li>
 {% endfor %}
             </ul>
+
+            <h6 class="usa-heading-alt">Offices</h6>
+            <ul class="usa-unstyled-list">
+{% for office in project.offices.all %}
+              <li><a href="{% url "office" office.id %}">{{office.name}}<span class="mdl-meta"></span></a></li>
+{% endfor %}
+            </ul>
           </div>
 
            <div class="usa-width-two-thirds">
