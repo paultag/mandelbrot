@@ -146,6 +146,7 @@ class Project(models.Model):
     id = models.CharField(max_length=128, primary_key=True)
     name = models.CharField(max_length=128)
     mission = models.TextField()
+    description = models.TextField()
     active = models.BooleanField()
     experts = models.ManyToManyField('Expert', through='ProjectMember')
     offices = models.ManyToManyField('Office', related_name="projects", blank=True)

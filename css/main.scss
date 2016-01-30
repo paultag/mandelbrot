@@ -63,6 +63,15 @@ p, h1, h2, h3, h4, h5, h6 {
 	font-family: $font-sans;
 }
 
+.mdl-app .usa-heading-alt {
+  color: $color-mdl-red;
+  font-weight: 500;
+}
+
+.mdl-app a, .mdl-app a:visited {
+  color: $color-primary;
+}
+
 .blue-bg {
     background-color: $color-mdl-blue;
     color: white;
@@ -204,14 +213,22 @@ ul.mdl-nav-links > li a {
 
 .mdl-profile a {
   text-align: center;
-  color: darken($color-white, 10%);
+  color: darken($color-white, 0%);
   padding-right: 20px;
   font-weight: 300;
 }
 
-.mdl-profile i {
+.mdl-profile i, .mdl-project i {
   padding-right: rem(10px);
 }
+
+.mdl-project .mdl-meta {
+  color: darken($color-white, 0%);
+  padding-right: 20px;
+  font-weight: 300;
+}
+
+
 
 
 /*

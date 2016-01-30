@@ -1,28 +1,52 @@
 {% extends "mandelbrot/base.html" %}
+{% load markdown %}
 
 {% block "main" %}
+    <div class="mdl-banner mdl-project">
+      <div class="usa-grid">          
+          <h3 class="usa-display">{{project.name}}</h3>
+          <span class="mdl-meta"><i class="fa fa-rebel"></i> 
+{% for agency in project.agencies.all %}
+              {{agency.name}}
+{% endfor %}
+          </span>
+          <span class="mdl-meta"><i class="fa fa-users"></i> {{project.get_active_memberships|length}} DSEs</span>
+
+          <span class="mdl-meta">
+{% if project.active %}
+              <i class="fa fa-thumbs-o-up"></i> Active
+{% else %}
+              <i class="fa fa-thumbs-o-down"></i> Inactive
+{% endif %}
+          </span>
+
+      </div>
+    </div>
+
     <div id="main" class="usa-grid">
-      <div class="usa-width-full">
-        <h1>{{project.name}}</h1>
+      <div class="mdl-app">
+        <div class="mdl-app-segment">
+          <div class="usa-width-one-third mdl-sidebar">
+            <h6 class="usa-heading-alt">Team Members</h6>
+            <ul class="usa-unstyled-list">
+{% for membership in project.get_active_memberships %}
+              <li><a href="{% url "expert" membership.who.id %}">{{membership.who.name}}<span class="mdl-meta"></span></a></li>
+{% endfor %}
+{% for membership in project.get_inactive_memberships %}
+              <li><a href="{% url "expert" membership.who.id %}">{{membership.who.name}}<span class="mdl-meta"> (past)</span></a></li>
+{% endfor %}
+            </ul>
+          </div>
 
-        {% if not project.active %}
-            <b>NOT ACTIVE</b>
-        {% endif %}
+           <div class="usa-width-two-thirds">
+            <h6 class="usa-heading-alt">Mission</h6>
+            <p>{{project.mission|markdown|safe}}</p>
 
-        Members
-        <ul>
-        {% for membership in project.get_active_memberships %}
-            <li>{{membership.who.name}} since {{membership.start_date}}</li>
-        {% endfor %}
-        </ul>
-
-
-        Sometimes, we work from
-        <ul>
-        {% for office in project.offices.all %}
-            <li>{{office.name}}</li>
-        {% endfor %}
-        </ul>
+            <h6 class="usa-heading-alt">Project Description</h6>
+            <p>{{project.description|markdown|safe}}</p>
+          </div>
+       </div>
+        </div>
       </div>
     </div>
 {% endblock %}
