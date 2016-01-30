@@ -11,6 +11,13 @@
       <div class="mdl-app">
         <div class="mdl-app-segment">
           <div class="usa-width-one-third mdl-sidebar">
+            <h6 class="usa-heading-alt">Agency</h6>
+            <ul class="usa-unstyled-list">
+{% for agency in expert.get_active_agencies %}
+                <li><a href="{% url "agency" agency.id %}">{{agency.name}}</a></li>
+{% endfor %}
+            </ul>
+
             <h6 class="usa-heading-alt">Projects</h6>
             <ul class="usa-unstyled-list">
 {% for membership in expert.get_active_memberships %}

@@ -19,6 +19,13 @@ class Expert(models.Model):
     def __str__(self):
         return "<Expert '{}'>".format(self.name)
 
+    def get_active_agencies(self):
+        return Agency.objects.filter(
+            projects__memberships__who=self,
+            projects__memberships__end_date=None,
+            projects__active=True,
+        ).distinct()
+
     def get_active_memberships(self):
         return self.memberships.filter(end_date=None, project__active=True)
 
