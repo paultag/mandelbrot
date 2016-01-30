@@ -2,10 +2,7 @@ from django.contrib import admin
 from mandelbrot.models import (
     Expert,
     Role,
-    # Step,
-    # GithubTeam,
-    # SlackChannel,
-    # OnboardingStep,
+    Interest,
     Office,
     ContactDetail,
     Project,
@@ -15,12 +12,8 @@ from mandelbrot.models import (
 )
 
 admin.site.register(Role)
-# admin.site.register(Step)
+admin.site.register(Interest)
 
-# admin.site.register(GithubTeam)
-# admin.site.register(SlackChannel)
-
-# admin.site.register(OnboardingStep)
 admin.site.register(Office)
 admin.site.register(ContactDetail)
 
@@ -30,10 +23,6 @@ admin.site.register(ProjectMember)
 
 admin.site.register(Badge)
 admin.site.register(BadgeAward)
-
-
-# class OnboardingStepInline(admin.TabularInline):
-#     model = OnboardingStep
 
 
 class ProjectMembershipInline(admin.TabularInline):
@@ -51,8 +40,7 @@ class ContactDetailInline(admin.TabularInline):
 
 class ExpertAdmin(admin.ModelAdmin):
     model = Expert
-    inlines = [ProjectMembershipInline, ContactDetailInline,
-               BadgeAwardInline,]  # OnboardingStepInline]
+    inlines = [ProjectMembershipInline, ContactDetailInline, BadgeAwardInline,]
 
 
 admin.site.register(Expert, ExpertAdmin)
