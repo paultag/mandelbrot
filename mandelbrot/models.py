@@ -49,6 +49,8 @@ class ContactDetail(models.Model):
     label = models.CharField(max_length=128)
     value = models.CharField(max_length=128)
     note = models.CharField(max_length=128, blank=True)
+    preferred = models.BooleanField()
+    public = models.BooleanField()
 
     def __str__(self):
         return "<ContactDetail who='{}' type='{}' value='{}'>".format(
