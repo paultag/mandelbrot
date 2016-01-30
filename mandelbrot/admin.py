@@ -19,9 +19,7 @@ admin.site.register(Agency)
 admin.site.register(Office)
 admin.site.register(ContactDetail)
 
-# admin.site.register(Project)
 admin.site.register(ProjectMember)
-
 
 admin.site.register(Badge)
 admin.site.register(BadgeAward)
