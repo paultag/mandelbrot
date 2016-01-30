@@ -8,7 +8,6 @@ class Expert(models.Model):
     name = models.CharField(max_length=128)
     photo_url = models.URLField(blank=True)
     title = models.CharField(max_length=128)
-    email = models.EmailField()
     roles = models.ManyToManyField('Role', related_name="experts")
     interests = models.ManyToManyField('Interest', related_name="experts")
     buddy = models.ForeignKey('Expert', related_name="buddies", blank=True, null=True)
