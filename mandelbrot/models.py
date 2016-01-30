@@ -18,8 +18,8 @@ class Expert(models.Model):
     def __str__(self):
         return "<Expert '{}'>".format(self.name)
 
-    def get_preferred_contact_details(self):
-        return self.contact_details.filter(preferred=True)
+    def get_preferred_public_contact_details(self):
+        return self.contact_details.filter(preferred=True, public=True)
 
     def get_active_agencies(self):
         return Agency.objects.filter(

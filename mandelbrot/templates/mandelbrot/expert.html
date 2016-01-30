@@ -8,7 +8,7 @@
           <img class="mdl-pic" src="{{expert.photo_url}}">
           <h3 class="usa-display">{{expert.name}}</h3>
 
-          {% for contact_detail in expert.get_preferred_contact_details %}
+          {% for contact_detail in expert.get_preferred_public_contact_details %}
               {% if contact_detail.type == "phone" %}
 <i class="fa fa-mobile"></i><a href="tel:{{contact_detail.value}}"> {{contact_detail.value}}</a>
               {% endif %}
