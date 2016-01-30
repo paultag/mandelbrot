@@ -1,4 +1,5 @@
 {% extends "mandelbrot/base.html" %}
+{% load markdown %}
 
 {% block "main" %}
     <div class="mdl-banner">
@@ -39,7 +40,7 @@
 
            <div class="usa-width-two-thirds">
             <h6 class="usa-heading-alt">Bio</h6>
-            <p>{{expert.bio}}</p>
+            <p>{{expert.bio|markdown|safe}}</p>
           </div>
        </div>
       </div>
