@@ -98,6 +98,14 @@ class BadgeAward(models.Model):
         )
 
 
+class Agency(models.Model):
+    id = models.CharField(max_length=128, primary_key=True)
+    name = models.CharField(max_length=128)
+
+    def __str__(self):
+        return "<Agency '{}'>".format(self.name)
+
+
 class Project(models.Model):
     id = models.CharField(max_length=128, primary_key=True)
     name = models.CharField(max_length=128)
