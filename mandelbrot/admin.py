@@ -19,7 +19,7 @@ admin.site.register(Agency)
 admin.site.register(Office)
 admin.site.register(ContactDetail)
 
-admin.site.register(Project)
+# admin.site.register(Project)
 admin.site.register(ProjectMember)
 
 
@@ -45,4 +45,10 @@ class ExpertAdmin(admin.ModelAdmin):
     inlines = [ProjectMembershipInline, ContactDetailInline, BadgeAwardInline,]
 
 
+class ProjectAdmin(admin.ModelAdmin):
+    model = Project
+    inlines = [ProjectMembershipInline]
+
+
 admin.site.register(Expert, ExpertAdmin)
+admin.site.register(Project, ProjectAdmin)
