@@ -7,9 +7,28 @@
           
           <img class="mdl-pic" src="{{expert.photo_url}}">
           <h3 class="usa-display">{{expert.name}}</h3>
-          <i class="fa fa-mobile"></i><a href="tel:555-555-5555"> 555-555-5555</a>
-          <i class="fa fa-fw fa-envelope-o"></i><a href="mailto:johnny.lately@gmail.com"> johnny.lately@gmail.com</a>
-          <i class="fa fa-fw fa-github-alt"></i><a href="https://www.github.com/example"> @example</a>
+
+          {% for contact_detail in expert.get_preferred_contact_details %}
+              {% if contact_detail.type == "phone" %}
+<i class="fa fa-mobile"></i><a href="tel:{{contact_detail.value}}"> {{contact_detail.value}}</a>
+              {% endif %}
+
+              {% if contact_detail.type == "email" %}
+<i class="fa fa-fw fa-envelope-o"></i><a href="mailto:{{contact_detail.value}}"> {{contact_detail.value}}</a>
+              {% endif %}
+
+              {% if contact_detail.type == "github" %}
+<i class="fa fa-fw fa-github-alt"></i><a href="https://github.com/{{contact_detail.value}}"> @{{contact_detail.value}}</a>
+              {% endif %}
+
+              {% if contact_detail.type == "twitter" %}
+<i class="fa fa-fw fa-twitter"></i><a href="https://twitter.com/{{contact_detail.value}}"> @{{contact_detail.value}}</a>
+              {% endif %}
+
+          {% endfor %}
+
+          <!--
+          -->
 
 
       </div>
