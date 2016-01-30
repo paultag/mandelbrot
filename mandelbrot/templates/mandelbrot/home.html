@@ -1,12 +1,12 @@
 {% extends "mandelbrot/base.html" %}
 
+{% block "bodyhack" %} class="blue-bg"{% endblock %}
+
 {% block "main" %}
-    <div id="main" class="usa-grid">
-      <div class="usa-width-full">
-          <a href="{% url "experts" %}">Experts</a>
-          <a href="{% url "offices" %}">Offices</a>
-          <a href="{% url "projects" %}">Projects</a>
-          <img src="/static/img/dsva_logo.svg" width="100%" height="100%">
-      </div>
+<div id="main" class="usa-grid">
+  <div class="mdl-app">
+    <div class="mdl-app-segment">
     </div>
+  </div>
+</div>
 {% endblock %}

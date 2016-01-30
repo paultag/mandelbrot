@@ -104,39 +104,40 @@ or right
     float: right;
 }
 /* ===========================*
-* Common components
+* Social Buttons
 * ============================*/
 
 
-.mdl-social-block {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-}
 
-.social-p, .social-e, .social-gh {
-  width: rem(24px);
-  height: rem(24px);
-  padding: rem(10px);
-  background: center no-repeat;
-  background-color: $color-mdl-blue;
-  &:hover {
-    background-blend-mode: overlay;
-  }
-}
-.social-p {
-  background-image: url("../img/phone.png");
-  background-image: url("../img/phone.svg");
-}
+// .mdl-social-block {
+//     width: 100%;
+//     display: flex;
+//     justify-content: space-between;
+// }
 
-.social-e {
-  background-image: url("../img/email.png");
-  background-image: url("../img/email.svg");    
-}
-.social-gh {
-  background-image: url("../img/github.png");
-  background-image: url("../img/github.svg");    
-}
+// .social-p, .social-e, .social-gh {
+//   width: rem(24px);
+//   height: rem(24px);
+//   padding: rem(10px);
+//   background: center no-repeat;
+//   background-color: $color-mdl-blue;
+//   &:hover {
+//     background-blend-mode: overlay;
+//   }
+// }
+// .social-p {
+//   background-image: url("../img/phone.png");
+//   background-image: url("../img/phone.svg");
+// }
+
+// .social-e {
+//   background-image: url("../img/email.png");
+//   background-image: url("../img/email.svg");    
+// }
+// .social-gh {
+//   background-image: url("../img/github.png");
+//   background-image: url("../img/github.svg");    
+// }
 
 /* ===========================*
 * Application navigation bar  *
@@ -260,10 +261,17 @@ making .mdl-app-segment a grandchild element of .mdl-app.
 * Search Results           
 * ============================*/
 
+// .mdl-result {
+//   cursor: pointer;
+
+//   .mdl-pic {}
+//   .mdl-social-block {}
+// }
+
 .mdl-result, .mdl-result:hover {
     // padding: 0 rem(20px);
     cursor: pointer;
-    .mdl-pic, .mdl-name, .mdl-meta, .mdl-social-block {
+    .mdl-pic, .mdl-name, .mdl-meta {
       margin: 0;      
     }
     .mdl-pic {

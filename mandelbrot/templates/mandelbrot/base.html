@@ -12,12 +12,11 @@
 
       {% block "header" %}{% endblock %}
   </head>
-  <body>
+  <body{% block "bodyhack" %}{% endblock %}>
     <nav class="mdl-nav">
         <div class="usa-grid">
-            <strong class="mdl-logo">Mandelbrot</strong>
-            <span class="mdl-application-title"></span>
-
+          <strong class="mdl-logo">Mandelbrot</strong>
+          <span class="mdl-application-title"></span>
           <ul class="mdl-nav-links usa-unstyled-list">
             <li><a href="{% url "offices" %}">Offices</a></li>
             <li><a href="{% url "projects" %}">Projects</a></li>
