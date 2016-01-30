@@ -2,11 +2,19 @@
 {% load markdown %}
 
 {% block "main" %}
-    <div class="mdl-banner">
+    <div class="mdl-banner mdl-profile">
       <div class="usa-grid">
+          
+          <img class="mdl-pic" src="{{expert.photo_url}}">
           <h3 class="usa-display">{{expert.name}}</h3>
+          <i class="fa fa-mobile"></i><a href="tel:555-555-5555"> 555-555-5555</a>
+          <i class="fa fa-fw fa-envelope-o"></i><a href="mailto:johnny.lately@gmail.com"> johnny.lately@gmail.com</a>
+          <i class="fa fa-fw fa-github-alt"></i><a href="https://www.github.com/example"> @example</a>
+
+
       </div>
     </div>
+
 
     <div id="main" class="usa-grid">
       <div class="mdl-app">
