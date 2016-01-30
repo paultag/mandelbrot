@@ -1,60 +1,40 @@
 {% extends "mandelbrot/base.html" %}
 
 {% block "main" %}
+    <div class="mdl-banner">
+      <div class="usa-grid">
+          <h3 class="usa-display">{{expert.name}}</h3>
+      </div>
+    </div>
+
     <div id="main" class="usa-grid">
-      <div class="usa-width-full">
-        <h1>{{expert.name}}</h1>
-        <h2>{{expert.title}}</h2>
+      <div class="mdl-app">
+        <div class="mdl-app-segment">
+          <div class="usa-width-one-third mdl-sidebar">
+            <h6 class="usa-heading-alt">Projects</h6>
+            <ul class="usa-unstyled-list">
+{% for membership in expert.get_active_memberships %}
+                <li><a href="{% url "project" membership.project.id %}">{{membership.project.name}}</a></li>
+{% endfor %}
+{% for membership in expert.get_inactive_memberships %}
+                <li><a href="{% url "project" membership.project.id %}">{{membership.project.name}}<span class="mdl-meta"> (Past)</span></a></li>
+{% endfor %}
+            </ul>
+          
+            <h6 class="usa-heading-alt">Badges</h6>
+            <div class="usa-grid-full">
+{% for award in expert.badges.all %}
+              <div class="usa-width-one-fourth"><img class="mdl-pic" src="http://placehold.it/100/f8f8f8"></div>            
+{% endfor %}
+            </div>
 
-        <div class="usa-width-full">
-            {% for role in expert.roles.all %}{% if role.icon %}
-                <i class="fa fa-{{role.icon}}"></i>
-            {% endif %}{% endfor %}
-        </div>
+          </div>
 
-        Active projects
-        <ul>
-        {% for membership in expert.get_active_memberships %}
-            <li>{{membership.project.name}}</li>
-        {% endfor %}
-        </ul>
-
-        inactive projects
-        <ul>
-        {% for membership in expert.get_inactive_memberships %}
-            <li>{{membership.project.name}}</li>
-        {% endfor %}
-        </ul>
-
-        {% if not user.is_anonymous %}
-            {% if expert.buddy %}
-                My buddy is {{expert.buddy.name}}
-            {% endif %}
-        {% endif %}
-
-        {% if not user.is_anonymous %}
-
-        Badges
-        <ul>
-        {% for badge in expert.badges.all %}
-            <li>{{badge.badge.title}}</li>
-        {% endfor %}
-        </ul>
-
-        Contact
-        <ul>
-        {% for contact in expert.contact_details.all %}
-            <li>
-                I can be reached via
-                {{contact.get_type_display}} at {{contact.value}}
-                {% if contact.note %}
-                    ({{contact.note}})
-                {% endif %}
-            </li>
-        {% endfor %}
-        </ul>
-        {% endif %}
-
+           <div class="usa-width-two-thirds">
+            <h6 class="usa-heading-alt">Bio</h6>
+            <p>{{expert.bio}}</p>
+          </div>
+       </div>
       </div>
     </div>
 {% endblock %}

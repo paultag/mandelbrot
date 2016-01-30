@@ -1,2 +1,1 @@
 Django
--e git+https://github.com/department-of-veterans-affairs/django-designstandards.git#egg=designstandards
