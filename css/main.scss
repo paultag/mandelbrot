@@ -181,6 +181,22 @@ ul.mdl-nav-links > li a {
 
 }
 
+/* ===========================*
+* Filters & Search
+* ============================*/
+
+.mdl-actions {
+  form, .usa-search  {
+    display: inline-block;
+  }
+  form {
+    max-width: 200px;
+  }
+  .usa-search {
+    float: right;
+  }
+}
+
 
 /* ===========================*
 * Page Banner
