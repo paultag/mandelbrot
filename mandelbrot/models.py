@@ -122,6 +122,7 @@ class Agency(models.Model):
 
     id = models.CharField(max_length=128, primary_key=True)
     name = models.CharField(max_length=128)
+    photo_url = models.URLField(blank=True)
 
     def __str__(self):
         return "<Agency '{}'>".format(self.name)
