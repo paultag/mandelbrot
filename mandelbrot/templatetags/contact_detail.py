@@ -22,4 +22,11 @@ def contact_detail_fontawesome(cd):
 
 @register.filter(name='contact_detail_href')
 def contact_detail_href(cd):
-    return cd.value
+    return {
+        "phone": "tel:{}",
+        "email": "mailto:{}",
+        "fax": "fax:{}",
+        "github": "https://github.com/{}",
+        "twitter": "https://twitter.com/@{}",
+        "yo": "yo:{}",
+    }.get(cd.type, '{}').format(cd.value)
