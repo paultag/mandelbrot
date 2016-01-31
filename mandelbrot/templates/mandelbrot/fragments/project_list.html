@@ -14,7 +14,9 @@
             </div>
             <div class="usa-width-one-third mdl-pic">
 {% for membership in project.get_active_memberships %}
+            <a href="{% url "expert" membership.who.id %}">
               <img src="{{membership.who.photo_url}}" />
+            </a>
 {% endfor %}
             </div>
           </div>
