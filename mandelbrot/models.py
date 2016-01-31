@@ -10,7 +10,7 @@ class Expert(models.Model):
     photo_url = models.URLField(blank=True)
     title = models.CharField(max_length=128)
     roles = models.ManyToManyField('Role', related_name="experts")
-    interests = models.ManyToManyField('Interest', related_name="experts")
+    interests = models.ManyToManyField('Interest', related_name="experts", blank=True)
     buddy = models.ForeignKey('Expert', related_name="buddies", blank=True, null=True)
     projects = models.ManyToManyField('Project', through='ProjectMember')
     bio = models.TextField(blank=True)
