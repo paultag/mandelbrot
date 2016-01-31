@@ -50,10 +50,16 @@
             <h6 class="usa-heading-alt">Projects</h6>
             <ul class="usa-unstyled-list">
 {% for membership in expert.get_active_memberships %}
-                <li><a href="{% url "project" membership.project.id %}">{{membership.project.name}}<span class="mdl-meta"> ({{membership.get_duration|humanize_timedelta}})</span></a></li>
+              <li>
+                  <a href="{% url "project" membership.project.id %}">{{membership.project.name}}</a>
+                  <span class="mdl-meta"> ({{membership.get_duration|humanize_timedelta}})</span>
+              </li>
 {% endfor %}
 {% for membership in expert.get_inactive_memberships %}
-                <li><a href="{% url "project" membership.project.id %}">{{membership.project.name}}<span class="mdl-meta"> (Past)</span></a></li>
+              <li>
+                  <a href="{% url "project" membership.project.id %}">{{membership.project.name}}</a>
+                  <span class="mdl-meta"> (Past)</span>
+              </li>
 {% endfor %}
             </ul>
           
