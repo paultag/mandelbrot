@@ -1,3 +1,6 @@
+from django.http import HttpResponse
+from django.views.generic import View
+
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 
@@ -7,54 +10,109 @@ from .models import Expert, Office, Project, Agency
 def home(request):
     return render(request, 'mandelbrot/home.html', {"experts": Expert.objects.all()})
 
+# Class-based view utility classes {{{
 
-# Expert views
+class MandelbrotView(View):
+    model = None
+    name = None
 
-def experts(request):
-    experts = Expert.objects.filter(public=True)
-    return render(request, 'mandelbrot/experts.html', {"experts": experts})
+    def params(self, *args, **kwargs):
+        raise NotImplementedError()
 
-def expert(request, name):
-    # Raise 404 on ! public unless logged in
-    who = Expert.objects.get(pk=name)
-    if request.user.is_anonymous and who.public is False:
-        raise Expert.DoesNotExist("Expert matching query does not exist")
+    def authorized(self, *args, **kwargs):
+        return True
 
-    return render(request, 'mandelbrot/expert.html', {"expert": who})
+    def get(self, request, *args, **kwargs):
+        if self.name is None:
+            raise NotImplementedError("You forgot `name` on your view")
 
-# Project views
+        data = self.lookup(request, *args, **kwargs)
+        if not self.authorized(data, request, *args, **kwargs):
+            raise self.model.DoesNotExist()
+        return render(request, self.template, {self.name: data})
 
-def projects(request):
-    projects = Project.objects.filter(active=True)
-    return render(request, 'mandelbrot/projects.html', {"projects": projects})
 
-def project(request, id):
-    project = Project.objects.get(pk=id)
-    return render(request, 'mandelbrot/project.html', {"project": project})
+class BoringObjectView(MandelbrotView):
+    def lookup(self, request, id):
+        return self.model.objects.get(pk=id)
 
-# Office views
 
-def offices(request):
-    offices = Office.objects.all()
-    return render(request, 'mandelbrot/offices.html', {"offices": offices})
+class BoringObjectsView(MandelbrotView):
+    model = None
+    def lookup(self, request):
+        return self.model.objects.all()
 
-def office(request, id):
-    office = Office.objects.get(pk=id)
-    return render(request, 'mandelbrot/office.html', {"office": office})
+# }}}
 
-# Agency views
+# Model Views {{{
 
-def agencies(request):
-    agencies = Agency.objects.all()
-    return render(request, 'mandelbrot/agencies.html', {"agencies": agencies})
+# Expert views {{{
 
-def agency(request, id):
-    agency = Agency.objects.get(pk=id)
-    return render(request, 'mandelbrot/agency.html', {"agency": agency})
+class ExpertsView(BoringObjectsView):
+    name = "experts"
+    template = "mandelbrot/experts.html"
+    model = Expert
 
-# Welcome
+    def lookup(self, request):
+        return Expert.objects.filter(public=True)
 
-@login_required
-def welcome(request, expert):
-    expert = Expert.objects.get(pk=expert)
-    return render(request, 'mandelbrot/welcome.html', {"expert": expert})
+
+class ExpertView(BoringObjectView):
+    name = "expert"
+    template = "mandelbrot/expert.html"
+    model = Expert
+
+    def authorized(self, who, request, *args, **kwargs):
+        return not (request.user.is_anonymous and who.public is False)
+
+# }}}
+
+# Project views {{{
+
+class ProjectsView(BoringObjectsView):
+    name = "projects"
+    template = "mandelbrot/projects.html"
+    model = Project
+
+    def lookup(self, request):
+        return Project.objects.filter(active=True)
+
+class ProjectView(BoringObjectView):
+    name = 'project'
+    model = Project
+    template = "mandelbrot/project.html"
+
+# }}}
+
+# Office views {{{
+
+class OfficesView(BoringObjectsView):
+    name = "offices"
+    template = "mandelbrot/offices.html"
+    model = Office
+
+class OfficeView(BoringObjectView):
+    name = "office"
+    template = "mandelbrot/office.html"
+    model = Office
+
+# }}}
+
+# Agency views {{{
+
+class AgenciesView(BoringObjectsView):
+    name = "agencies"
+    template = "mandelbrot/agencies.html"
+    model = Agency
+
+class AgencyView(BoringObjectView):
+    name = "agency"
+    template = "mandelbrot/agency.html"
+    model = Agency
+
+# }}}
+
+# }}}
+
+
+# vim: foldmethod=marker
