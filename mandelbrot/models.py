@@ -96,6 +96,7 @@ class Interest(models.Model):
 class Badge(models.Model):
     id = models.CharField(max_length=128, primary_key=True)
     title = models.CharField(max_length=128)
+    photo_url = models.URLField(blank=True)
 
     def __str__(self):
         return "<Badge '{}' ({})>".format(self.id, self.title)
