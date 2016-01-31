@@ -1,0 +1,12 @@
+{% load humanize %}
+
+{% for expert in experts %}
+          <div class="usa-width-one-third mdl-result-card">
+              <a href="{% url "expert" expert.id %}">
+                  <img class="mdl-pic" src="{{expert.photo_url}}" />
+              </a>
+              {% include "mandelbrot/fragments/compact_contact.html" %}
+              <h4 class="mdl-txt-c mdl-name">{{expert.name}}</h4>
+              <p class="mdl-meta mdl-txt-c mdl-meta mdl-truncate">{{expert.get_active_agencies|humanize_list}}</p>
+          </div>
+{% endfor %}

@@ -1,0 +1,21 @@
+{% load humanize %}
+
+{% for project in projects %}
+          <div class="usa-width-one-whole mdl-result-card">
+            <div class="usa-width-two-thirds">
+              <h1 class="mdl-name"><a href="{% url "project" project.id %}" >{{project.name}}</a></h1>
+              <div "mdl-meta">
+                  {{project.agencies.all|humanize_list}}
+                  •
+                  {{project.get_active_memberships|length}} DSEs
+                  •
+                  {% if project.active %}Active{% else %}Inactive{% endif %}
+              </div>
+            </div>
+            <div class="usa-width-one-third mdl-pic">
+{% for membership in project.get_active_memberships %}
+              <img src="{{membership.who.photo_url}}" />
+{% endfor %}
+            </div>
+          </div>
+{% endfor %}

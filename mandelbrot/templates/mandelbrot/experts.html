@@ -1,5 +1,4 @@
 {% extends "mandelbrot/base.html" %}
-{% load humanize %}
 
 {% block "bodyhack" %} class="blue-bg"{% endblock %}
 
@@ -7,16 +6,7 @@
     <div id="main" class="usa-grid">
       <div class="mdl-app mdl-profile">
         <div class="mdl-app-segment">
-{% for expert in experts %}
-          <div class="usa-width-one-third mdl-result-card">
-              <a href="{% url "expert" expert.id %}">
-                  <img class="mdl-pic" src="{{expert.photo_url}}" />
-              </a>
-              {% include "mandelbrot/fragments/compact_contact.html" %}
-              <h4 class="mdl-txt-c mdl-name">{{expert.name}}</h4>
-              <p class="mdl-meta mdl-txt-c mdl-meta mdl-truncate">{{expert.get_active_agencies|humanize_list}}</p>
-          </div>
-{% endfor %}
+            {% include "mandelbrot/fragments/expert_list.html" %}
         </div>
       </div>
     </div>

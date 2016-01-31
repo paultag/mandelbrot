@@ -12,24 +12,17 @@
     <div id="main" class="usa-grid">
       <div class="mdl-app">
         <div class="mdl-app-segment">
-          <div class="usa-width-one-third mdl-sidebar">
-            <h6 class="usa-heading-alt">Team</h6>
-            <ul class="usa-unstyled-list">
-                {% for membership in agency.get_active_memberships %}
-              <li>
-                  <a href="{% url "expert" membership.who.id %}">{{membership.who.name}}</a>
-                  <span class="mdl-meta"></span>
-              </li>
-              {% endfor %}
-            </ul>
-          
-          </div>
+{% with agency.get_active_experts as experts %}     
+{% include "mandelbrot/fragments/expert_list.html" %}
+{% endwith %}
+        </div>
+      </div>
 
-           <div class="usa-width-two-thirds">
-            <h6 class="usa-heading-alt">Projects</h6>
-            <p>
-            </p>
-          </div>
+      <div class="mdl-app mdl-project">
+        <div class="mdl-app-segment">
+{% with agency.get_active_projects as projects %}     
+{% include "mandelbrot/fragments/project_list.html" %}
+{% endwith %}
        </div>
       </div>
     </div>
