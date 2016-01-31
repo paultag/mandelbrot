@@ -1,18 +1,18 @@
 {% extends "mandelbrot/base.html" %}
+{% load humanize %}
+
+{% block "bodyhack" %} class="blue-bg"{% endblock %}
 
 {% block "main" %}
     <div id="main" class="usa-grid">
-        <h1>Team</h1>
-    {% for expert in experts %}
-      <div class="usa-width-one-third">
-          <a href='{% url "expert" expert.id %}'>{{expert.name}}</a>
-          {{expert.title}}
-          {% if expert.photo_url %}
-          <img height=250 width=400 src="{{expert.photo_url}}" />
-          {% else %}
-          <img height=250 width=400 src="/static/img/placeholder.png" />
-          {% endif %}
+      <div class="mdl-app">
+        <div class="mdl-app-segment">
+{% for expert in experts %}
+          <div class="usa-width-one-third mdl-result">
+              <img class="mdl-pic" src="{{expert.photo_url}}">
+              {% include "mandelbrot/fragments/compact_contact.html" %}
+{% endfor %}
+        </div>
       </div>
-      {% endfor %}
     </div>
 {% endblock %}

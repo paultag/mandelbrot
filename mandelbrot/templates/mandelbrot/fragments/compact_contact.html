@@ -1,0 +1,19 @@
+          <div class="mdl-social-block">
+          {% for contact_detail in expert.get_preferred_public_contact_details %}
+              {% if contact_detail.type == "phone" %}
+<a class="usa-button" href="tel:{{contact_detail.value}}"><i class="fa fa-mobile"></i></a>
+              {% endif %}
+
+              {% if contact_detail.type == "email" %}
+<a class="usa-button" href="mailto:{{contact_detail.value}}"><i class="fa fa-envelope-o"></i></a>
+              {% endif %}
+
+              {% if contact_detail.type == "github" %}
+<a class="usa-button" href="https://github.com/{{contact_detail.value}}"><i class="fa fa-github-alt"></i></a>
+              {% endif %}
+
+              {% if contact_detail.type == "twitter" %}
+<a class="usa-button" href="https://twitter.com/{{contact_detail.value}}"><i class="fa fa-twitter"></i></a>
+              {% endif %}
+          {% endfor %}
+          </div>
