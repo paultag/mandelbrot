@@ -2,7 +2,7 @@ from django.conf.urls import url
 import mandelbrot.views
 
 urlpatterns = [
-    url(r'^$', mandelbrot.views.home),
+    url(r'^$', mandelbrot.views.home, name='home'),
 
     url(r'^experts/$', mandelbrot.views.experts, name='experts'),
     url(r'^expert/(?P<name>.*)/$', mandelbrot.views.expert, name='expert'),
