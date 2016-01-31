@@ -1,0 +1,14 @@
+{% load humanize %}
+
+{% for membership in memberships %}
+              <li>
+                  <a href="{% url "project" membership.project.id %}">{{membership.project.name}}</a>
+                  <span class="mdl-meta"> 
+                      {% if membership.end_date %}
+                      (Past)
+                      {% else %}
+                      ({{membership.get_duration|humanize_timedelta}}, {{membership.roles.all|humanize_list}})
+                      {% endif %}
+                  </span>
+              </li>
+{% endfor %}
