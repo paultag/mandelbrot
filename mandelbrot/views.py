@@ -26,14 +26,18 @@ class MandelbrotView(View):
         if self.name is None:
             raise NotImplementedError("You forgot `name` on your view")
 
-        flavors = request.META['HTTP_ACCEPT'].split(",")
-        encoding = "text/html"
-        if len(flavors) > 0:
-            encoding = flavors[0]
+        # flavors = request.META['HTTP_ACCEPT'].split(",")
+        # encoding = "text/html"
+        # if len(flavors) > 0:
+        #     encoding = flavors[0]
 
         data = self.lookup(request, *args, **kwargs)
         if not self.authorized(data, request, *args, **kwargs):
             raise self.model.DoesNotExist()
+
+        # if encoding == "application/json":
+        #     return self.json(request, data)
+
         return render(request, self.template, {self.name: data})
 
 
