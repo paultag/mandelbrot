@@ -47,6 +47,15 @@
 {% endfor %}
             </div>
 
+            <h6 class="usa-heading-alt">Interests</h6>
+            <div class="usa-grid-full">
+            <ul class="usa-unstyled-list">
+{% for interest in expert.interests.all %}
+    <li>{{interest.name}}</li>
+{% endfor %}
+            </ul>
+            </div>
+
           </div>
 
            <div class="usa-width-two-thirds">

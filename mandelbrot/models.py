@@ -87,10 +87,10 @@ class Role(models.Model):
 
 
 class Interest(models.Model):
-    title = models.CharField(max_length=128)
+    name = models.CharField(max_length=128)
 
     def __str__(self):
-        return "<Interest '{}'>".format(self.title)
+        return "<Interest '{}'>".format(self.name)
 
 
 class Badge(models.Model):
