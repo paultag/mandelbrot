@@ -300,3 +300,39 @@ making .mdl-app-segment a grandchild element of .mdl-app.
       color: darken($color-white, 10%);
     }        
 }
+
+.mdl-project .mdl-result, .mdl-result:hover {
+  background-color: $color-white;
+  color: $color-mdl-blue;
+  cursor: pointer;
+  border: rem(1px) solid $color-white;
+  border-radius: rem(5px);
+  padding: rem(20px);
+  min-height: rem(120px);
+  margin-bottom: 20px;
+
+  h1 {
+    margin: 0;
+  }
+
+  &:hover {
+    box-shadow: 2px 2px rgba(0, 0, 0, 0.2);
+  }
+
+  .mdl-pic {
+    margin: 10px 0 ;
+  }
+  .mdl-pic img {
+    float: right;
+    background-color: $color-mdl-red;
+    width: 32px;
+    height: 32px;
+    margin: 3px;
+
+  }
+
+  img.mdl-pic:first-child {
+    
+  }
+
+}

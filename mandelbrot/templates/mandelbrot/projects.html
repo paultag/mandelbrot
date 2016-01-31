@@ -1,12 +1,31 @@
 {% extends "mandelbrot/base.html" %}
+{% load humanize %}
+
+{% block "bodyhack" %} class="blue-bg"{% endblock %}
 
 {% block "main" %}
     <div id="main" class="usa-grid">
-        <h1>Projects</h1>
-    {% for project in projects %}
-      <div class="usa-width-one-third">
-          <a href='{% url "project" project.id %}'>{{project.name}}</a>
+      <div class="mdl-app mdl-project">
+        <div class="mdl-app-segment">
+{% for project in projects %}
+          <div class="usa-width-one-whole mdl-result">
+            <div class="usa-width-two-thirds">
+              <h1>{{project.name}}</h1>
+              <div "mdl-meta">
+                  {{project.agencies.all|humanize_list}}
+                  •
+                  {{project.get_active_memberships|length}} DSEs
+                  •
+                  {% if project.active %}Active{% else %}Inactive{% endif %}
+              </div>
+            </div>
+            <div class="usa-width-one-third mdl-pic">
+{% for membership in project.get_active_memberships %}
+              <img src="{{membership.who.photo_url}}" />
+{% endfor %}
+            </div>
+          </div>
+{% endfor %}
       </div>
-      {% endfor %}
     </div>
 {% endblock %}
