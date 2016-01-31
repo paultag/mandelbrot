@@ -19,8 +19,12 @@ class Command(BaseCommand):
         pass
 
     def handle(self, *args, **options):
-        for person in scrape('department-of-veterans-affairs', 'Digital Service at VA'):
-            print(person)
+        for org, team in (
+            ('department-of-veterans-affairs', 'Digital Service at VA'),
+            ('usds', 'USDS'),
+        ):
+            for person in scrape(org, team):
+                print(person)
 
 
 def update_expert(org, github_user, expert):
@@ -41,8 +45,10 @@ def create_expert(org, github_user):
 
     expert = Expert.objects.create(
         id=github_user.login,
-        name=github_user.name,
-        public=public,
+        name=github_user.name if github_user.name else github_user.login,
+        public=True,
+        title="Digital Services Expert",
+        # public=public,
         photo_url=github_user.avatar_url,
     )
 
