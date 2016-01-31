@@ -9,7 +9,6 @@ class Expert(models.Model):
     name = models.CharField(max_length=128)
     photo_url = models.URLField(blank=True)
     title = models.CharField(max_length=128)
-    roles = models.ManyToManyField('Role', related_name="experts")
     interests = models.ManyToManyField('Interest', related_name="experts", blank=True)
     buddy = models.ForeignKey('Expert', related_name="buddies", blank=True, null=True)
     projects = models.ManyToManyField('Project', through='ProjectMember')
@@ -176,6 +175,8 @@ class ProjectMember(models.Model):
     project = models.ForeignKey('Project', related_name="memberships")
     start_date = models.DateField()
     end_date = models.DateField(blank=True, null=True)
+    roles = models.ManyToManyField('Role')
+    part_time = models.BooleanField()
 
     def get_duration(self):
         if self.end_date:
