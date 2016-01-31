@@ -7,7 +7,7 @@
                       {% if membership.end_date %}
                       (Past)
                       {% else %}
-                      ({{membership.get_duration|humanize_timedelta}}, {{membership.roles.all|humanize_list}})
+                      ({{membership.get_duration|humanize_timedelta}}, {{membership.roles.all|humanize_list}}{% if membership.part_time %}, Part Time{% endif %})
                       {% endif %}
                   </span>
               </li>
