@@ -67,6 +67,7 @@ def scrape(sections):
 
         for project in section.projects:
             agencies, title = project_details(project)
+            print(project.team)
 
             project = Project(
                 id=django.utils.text.slugify(title),
