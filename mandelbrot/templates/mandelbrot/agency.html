@@ -1,15 +1,37 @@
 {% extends "mandelbrot/base.html" %}
+{% load humanize %}
 
 {% block "main" %}
-     <div id="map"></div>
-    <div id="main" class="usa-grid">
-      <div class="usa-width-full">
-        <h1>{{agency.name}}</h1>
+    <div class="mdl-banner mdl-profile">
+      <div class="usa-grid">
+          <img class="mdl-pic" src="{{agency.photo_url}}">
+          <h3 class="usa-display">{{agency.name}}</h3>
       </div>
     </div>
 
-    {% for membership in agency.get_active_experts %}
-        {{membership}}
-    {% endfor %}
+    <div id="main" class="usa-grid">
+      <div class="mdl-app">
+        <div class="mdl-app-segment">
+          <div class="usa-width-one-third mdl-sidebar">
+            <h6 class="usa-heading-alt">Team</h6>
+            <ul class="usa-unstyled-list">
+                {% for membership in agency.get_active_memberships %}
+              <li>
+                  <a href="{% url "expert" membership.who.id %}">{{membership.who.name}}</a>
+                  <span class="mdl-meta"></span>
+              </li>
+              {% endfor %}
+            </ul>
+          
+          </div>
+
+           <div class="usa-width-two-thirds">
+            <h6 class="usa-heading-alt">Projects</h6>
+            <p>
+            </p>
+          </div>
+       </div>
+      </div>
+    </div>
 
 {% endblock %}

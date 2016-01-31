@@ -26,6 +26,12 @@
       <div class="mdl-app">
         <div class="mdl-app-segment">
           <div class="usa-width-one-third mdl-sidebar">
+            <h6 class="usa-heading-alt">Agency</h6>
+            <ul class="usa-unstyled-list">
+{% for agency in project.agencies.all %}
+                <li><a href="{% url "agency" agency.id %}">{{agency.name}}</a></li>
+{% endfor %}
+            </ul>
             <h6 class="usa-heading-alt">Team Members</h6>
             <ul class="usa-unstyled-list">
 {% for membership in project.get_active_memberships %}
