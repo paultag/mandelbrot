@@ -1,17 +1,3 @@
           {% for contact_detail in expert.get_preferred_public_contact_details %}
-              {% if contact_detail.type == "phone" %}
-<i class="fa fa-mobile"></i><a href="tel:{{contact_detail.value}}"> {{contact_detail.value}}</a>
-              {% endif %}
-
-              {% if contact_detail.type == "email" %}
-<i class="fa fa-fw fa-envelope-o"></i><a href="mailto:{{contact_detail.value}}"> {{contact_detail.value}}</a>
-              {% endif %}
-
-              {% if contact_detail.type == "github" %}
-<i class="fa fa-fw fa-github-alt"></i><a href="https://github.com/{{contact_detail.value}}"> @{{contact_detail.value}}</a>
-              {% endif %}
-
-              {% if contact_detail.type == "twitter" %}
-<i class="fa fa-fw fa-twitter"></i><a href="https://twitter.com/{{contact_detail.value}}"> @{{contact_detail.value}}</a>
-              {% endif %}
+          {% include "mandelbrot/fragments/contact_detail.html" with note=False %}
           {% endfor %}

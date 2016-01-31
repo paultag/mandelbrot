@@ -39,6 +39,16 @@
 {% endwith %}
 
             </ul>
+
+            <h6 class="usa-heading-alt">Contact Details</h6>
+            <div class="usa-grid-full">
+            <ul class="usa-unstyled-list">
+{% for contact_detail in expert.contact_details.all %}
+              <li>{% include "mandelbrot/fragments/contact_detail.html" with note=True %}</li>
+{% endfor %}
+            </ul>
+            </div>
+
           
             <h6 class="usa-heading-alt">Badges</h6>
             <div class="usa-grid-full">
