@@ -15,6 +15,7 @@ def contact_detail_fontawesome(cd):
         "fax": "fa-fax",
         "github": "fa-github-alt",
         "twitter": "fa-twitter",
+        "slack": "fa-slack",
         "yo": "fa-square",
         "website": "fa-external-link",
     }.get(cd.type, 'fa-link')
@@ -28,5 +29,6 @@ def contact_detail_href(cd):
         "fax": "fax:{}",
         "github": "https://github.com/{}",
         "twitter": "https://twitter.com/@{}",
+        "slack": "https://usds.slack.com/messages/@{}/",
         "yo": "yo:{}",
     }.get(cd.type, '{}').format(cd.value)
