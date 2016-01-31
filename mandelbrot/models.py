@@ -30,11 +30,15 @@ class Expert(models.Model):
         ).distinct()
 
     def get_active_memberships(self):
-        return self.memberships.filter(end_date=None, project__active=True)
+        return self.memberships.filter(
+            end_date=None,
+            project__active=True,
+        ).order_by('start_date')
 
     def get_inactive_memberships(self):
         return self.memberships.filter(
-            Q(end_date__isnull=False) | Q(project__active=False))
+            Q(end_date__isnull=False) | Q(project__active=False),
+        ).order_by('end_date')
 
 
 CONTACT_TYPES = [
@@ -157,10 +161,12 @@ class Project(models.Model):
         return "<Project '{}'>".format(self.name)
 
     def get_active_memberships(self):
-        return self.memberships.filter(end_date=None)
+        return self.memberships.filter(end_date=None).order_by('start_date')
 
     def get_inactive_memberships(self):
-        return self.memberships.filter(end_date__isnull=False)
+        return self.memberships.filter(
+            end_date__isnull=False
+        ).order_by('end_date')
 
 
 class ProjectMember(models.Model):
