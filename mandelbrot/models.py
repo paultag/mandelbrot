@@ -1,5 +1,6 @@
 from django.db.models import Q
 from django.db import models
+import datetime as dt
 import importlib
 
 
@@ -167,6 +168,11 @@ class ProjectMember(models.Model):
     project = models.ForeignKey('Project', related_name="memberships")
     start_date = models.DateField()
     end_date = models.DateField(blank=True, null=True)
+
+    def get_duration(self):
+        if self.end_date:
+            return self.end_date - self.start_date
+        return dt.date.today() - self.start_date
 
     def __str__(self):
         return "<ProjectMember '{}' in '{}'>".format(

@@ -29,10 +29,10 @@
             <h6 class="usa-heading-alt">Team Members</h6>
             <ul class="usa-unstyled-list">
 {% for membership in project.get_active_memberships %}
-              <li><a href="{% url "expert" membership.who.id %}">{{membership.who.name}}<span class="mdl-meta"></span></a></li>
+<li><a href="{% url "expert" membership.who.id %}">{{membership.who.name}}<span class="mdl-meta"> ({{membership.get_duration|humanize_timedelta}})</span></a></li>
 {% endfor %}
 {% for membership in project.get_inactive_memberships %}
-              <li><a href="{% url "expert" membership.who.id %}">{{membership.who.name}}<span class="mdl-meta"> (past)</span></a></li>
+<li><a href="{% url "expert" membership.who.id %}">{{membership.who.name}}<span class="mdl-meta"> (no longer on this project)</span></a></li>
 {% endfor %}
             </ul>
 
