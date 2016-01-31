@@ -5,10 +5,10 @@
 
 {% block "main" %}
     <div id="main" class="usa-grid">
-      <div class="mdl-app">
+      <div class="mdl-app mdl-profile">
         <div class="mdl-app-segment">
 {% for expert in experts %}
-          <div class="usa-width-one-third mdl-result">
+          <div class="usa-width-one-third mdl-result-card">
               <a href="{% url "expert" expert.id %}">
                   <img class="mdl-pic" src="{{expert.photo_url}}" />
               </a>

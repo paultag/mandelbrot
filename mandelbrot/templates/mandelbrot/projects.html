@@ -8,9 +8,9 @@
       <div class="mdl-app mdl-project">
         <div class="mdl-app-segment">
 {% for project in projects %}
-          <div class="usa-width-one-whole mdl-result">
+          <div class="usa-width-one-whole mdl-result-card">
             <div class="usa-width-two-thirds">
-              <h1><a href="{% url "project" project.id %}" >{{project.name}}</a></h1>
+              <h1 class="mdl-name"><a href="{% url "project" project.id %}" >{{project.name}}</a></h1>
               <div "mdl-meta">
                   {{project.agencies.all|humanize_list}}
                   •

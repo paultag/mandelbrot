@@ -45,7 +45,7 @@ html,body {
     min-height: 100%;
 }
 body {
-    padding-bottom: 70px;
+    padding-bottom: rem(70px);
 }
 
 /*-----------------------------------*
@@ -93,7 +93,7 @@ p, h1, h2, h3, h4, h5, h6 {
     text-transform: uppercase;
 }
 .mdl-meta {
-    color: $color-gray-light;
+    color: $color-gray;
     font-weight: 300;
 } 
 
@@ -111,21 +111,6 @@ or right
 }
 .mdl-push-right {
     float: right;
-}
-/* ===========================*
-* Social Buttons
-* ============================*/
-
-.mdl-social-block {    
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 60px;
-}
-
-.mdl-social-block > .usa-button {
-  background-color: $color-mdl-red;
-  width: rem(60px);
 }
 
 
@@ -173,7 +158,7 @@ ul.mdl-nav-links > li a {
     color: $color_white;
     display: inline-block;
     text-align: center;
-    padding: rem(10px) rem(20px);
+    padding: 0 0 rem(10px) rem(20px);
     text-decoration: none;
     &:hover {
       color: darken($color_white, 10%)
@@ -190,7 +175,7 @@ ul.mdl-nav-links > li a {
     display: inline-block;
   }
   form {
-    max-width: 200px;
+    width: 200px;
   }
   .usa-search {
     float: right;
@@ -230,7 +215,7 @@ ul.mdl-nav-links > li a {
 .mdl-profile a {
   text-align: center;
   color: darken($color-white, 0%);
-  padding-right: 20px;
+  padding-right: rem(20px);
   font-weight: 300;
 }
 
@@ -240,7 +225,7 @@ ul.mdl-nav-links > li a {
 
 .mdl-project .mdl-meta {
   color: darken($color-white, 0%);
-  padding-right: 20px;
+  padding-right: rem(20px);
   font-weight: 300;
 }
 
@@ -289,66 +274,90 @@ making .mdl-app-segment a grandchild element of .mdl-app.
     padding-right: rem(40px);
 	.mdl-pic {
 		border: 1px solid $color-gray-light;
-		border-radius: 3px;
+		border-radius: rem(3px);
 	}
 }
+
+
+/* ===========================*
+* Social Buttons
+* ============================*/
+
+.mdl-social-block {    
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 rem(30px);
+  a, a:visited {
+    color: $color-white;
+  }
+}
+
+.mdl-social-block > a.usa-button {
+  background-color: $color-mdl-blue;
+  color: $color-white;
+  width: rem(60px);
+  i {
+    padding-right: 0;
+  }
+}
+
+
+
+
 
 
 /* ===========================*
 * Search Results           
 * ============================*/
 
-
-.mdl-result, .mdl-result:hover {
-
-    cursor: pointer;
-    .mdl-pic, .mdl-name, .mdl-meta {
-      margin: 0;      
-    }
-    .mdl-pic {
-      padding: 0 rem(20px);
-    }
-    .mdl-name {
-      font-weight: 500;
-      margin-bottom: rem(2px);
-    } 
-    .mdl-meta {
-      color: darken($color-white, 10%);
-    }        
-}
-
-.mdl-project .mdl-result, .mdl-result:hover {
+.mdl-result-card {
+  display: inline-block;
+  cursor: pointer;
+  padding: rem(20px);
   background-color: $color-white;
   color: $color-mdl-blue;
-  cursor: pointer;
-  border: rem(1px) solid $color-white;
-  border-radius: rem(5px);
-  padding: rem(20px);
-  min-height: rem(120px);
-  margin-bottom: 20px;
-
-  h1 {
+  border-radius: rem(3px);
+  min-height: rem(250px);
+  .mdl-name, .mdl-meta {
     margin: 0;
   }
-
+  .mdl-name {
+    padding-top: rem(10px);
+  }
   &:hover {
-    box-shadow: 2px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 2px 4px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.mdl-profile .mdl-result-card .mdl-pic {
+  max-width: rem(175px);
+  border-radius: rem(175px);
+  border: 1px solid $color-gray-light;
+}
+
+
+.mdl-project .mdl-result-card, .mdl-project .mdl-result-card:hover {
+  padding: rem(20px);
+  min-height: rem(120px);
+  margin-bottom: rem(20px);
+
+  .mdl-name {
+    margin: 0;
   }
 
   .mdl-pic {
     margin: 10px 0 ;
   }
   .mdl-pic img {
+    border: 1px solid $color-gray-light;
+    border-radius: 3px;
     float: right;
     background-color: $color-mdl-red;
-    width: 32px;
-    height: 32px;
-    margin: 3px;
-
+    width: rem(32px);
+    height: rem(32px);
+    margin: rem(3px);
   }
 
-  img.mdl-pic:first-child {
-    
-  }
 
 }
