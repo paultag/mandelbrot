@@ -15,7 +15,7 @@
       <div class="mdl-app">
         <div class="mdl-app-segment">
 {% with agency.get_active_experts as experts %}     
-{% include "mandelbrot/lists/expert_list.html" %}
+{% include "mandelbrot/lists/expert.html" %}
 {% endwith %}
         </div>
       </div>
@@ -23,7 +23,7 @@
       <div class="mdl-app mdl-project">
         <div class="mdl-app-segment">
 {% with agency.get_active_projects as projects %}     
-{% include "mandelbrot/lists/project_list.html" %}
+{% include "mandelbrot/lists/project.html" %}
 {% endwith %}
        </div>
       </div>
