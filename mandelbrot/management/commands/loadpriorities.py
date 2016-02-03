@@ -65,19 +65,29 @@ def scrape(sections):
         if section.title == "Projects open for staffing":
             active = True
 
+        if not active:
+            continue
+
         for project in section.projects:
             agencies, title = project_details(project)
-            print(project.team)
-
-            project = Project(
+            db_project = Project(
                 id=django.utils.text.slugify(title),
                 name=title,
                 active=active,
             )
-            project.save()
+            db_project.save()
 
             for agency in agencies:
                 agency.save()
-                project.agencies.add(agency)
+                db_project.agencies.add(agency)
 
-            yield project
+            for employee in project.team:
+                if employee.name.lower() == "open":
+                    continue
+
+                print("Name", employee.name)
+                print("Empl", employee.employer)
+                roles = employee.role.split("/")
+                part_time = employee.quantity == 1.0
+
+            yield db_project

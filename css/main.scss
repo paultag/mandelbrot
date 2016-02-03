@@ -338,7 +338,7 @@ making .mdl-app-segment a grandchild element of .mdl-app.
 }
 
 .mdl-profile .mdl-result-card .mdl-pic {
-  max-width: rem(175px);
+  width: rem(175px);
   border-radius: rem(175px);
   border: 1px solid $color-gray-light;
 }

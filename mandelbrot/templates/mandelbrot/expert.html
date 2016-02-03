@@ -12,7 +12,9 @@
           <h4>{{expert.title}}</h4>
           -->
 
-          {% include "mandelbrot/fragments/verbose_contact.html" %}
+{% for contact_detail in expert.get_preferred_public_contact_details %}
+          {% include "mandelbrot/fragments/contact_detail.html" with note=False %}
+{% endfor %}
       </div>
     </div>
 
