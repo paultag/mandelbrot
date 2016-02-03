@@ -22,7 +22,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         with open(priorities_md, 'r') as fd:
-            sections = priorities.parse_document(fd.read())
+            (sections, _) = priorities.parse_document(fd.read())
 
         for project in scrape(sections):
             print(project)
