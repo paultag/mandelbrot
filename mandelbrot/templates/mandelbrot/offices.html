@@ -1,12 +1,13 @@
 {% extends "mandelbrot/base.html" %}
 
+{% block "bodyhack" %} class="blue-bg"{% endblock %}
+
 {% block "main" %}
     <div id="main" class="usa-grid">
-        <h1>Offices</h1>
-    {% for office in offices %}
-      <div class="usa-width-one-third">
-          <a href='{% url "office" office.id %}'>{{office.name}}</a>
+      <div class="mdl-app mdl-profile">
+        <div class="mdl-app-segment">
+            {% include "mandelbrot/fragments/office_list.html" %}
+        </div>
       </div>
-      {% endfor %}
     </div>
 {% endblock %}

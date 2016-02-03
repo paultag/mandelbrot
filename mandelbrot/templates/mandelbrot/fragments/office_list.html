@@ -1,0 +1,16 @@
+{% load humanize %}
+
+<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+<script src="/static/js/mandelbrot.maps.min.js"></script>
+
+{% for office in offices %}
+          <div class="usa-width-one-third mdl-result-card">
+              <div
+                class='mdl-pic mdl-map'
+                data-latitude="{{office.latitude}}"
+                data-longitude="{{office.longitude}}"></div>
+              <h4 class="mdl-txt-c mdl-name">{{office.name}}</h4>
+              <p class="mdl-meta mdl-txt-c mdl-meta mdl-truncate">{{office.name}}</p>
+          </div>
+{% endfor %}

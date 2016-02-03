@@ -343,6 +343,11 @@ making .mdl-app-segment a grandchild element of .mdl-app.
   border: 1px solid $color-gray-light;
 }
 
+.mdl-map {
+    width: rem(175px);
+    height: rem(175px);
+    z-index: 0;
+}
 
 .mdl-project .mdl-result-card, .mdl-project .mdl-result-card:hover {
   padding: rem(20px);
