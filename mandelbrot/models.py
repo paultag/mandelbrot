@@ -13,9 +13,53 @@ class Expert(models.Model):
     buddy = models.ForeignKey('Expert', related_name="buddies", blank=True, null=True)
     projects = models.ManyToManyField('Project', through='ProjectMember')
     bio = models.TextField(blank=True)
+    active = models.BooleanField()
+    start_date = models.DateField()
+    end_date = models.DateField(blank=True, null=True)
+
+    @classmethod
+    def get_active(cls, *args):
+        return cls.objects.filter(active=True, *args)
+
+    @classmethod
+    def by_name(cls, name):
+        objs = cls.objects.filter(
+            Q(name__iexact=name) |
+            Q(other_names__name__iexact=name)
+        ).distinct()
+        if len(objs) == 0:
+            raise cls.DoesNotExist(name)
+        if len(objs) > 1:
+            raise cls.MultipleObjectsReturned(name)
+        return objs[0]
 
     def __str__(self):
         return "<Expert '{}'>".format(self.name)
+
+    def add_contact_detail(self, type, value, label=None, note=None, preferred=None):
+        created = False
+        try:
+            detail = self.contact_details.get(value=value, type=type)
+        except ContactDetail.DoesNotExist:
+            detail = ContactDetail.objects.create(
+                who=self, type=type, value=value,
+                preferred=preferred if preferred is not None else False,
+                label=label if label is not None else "",
+            )
+            self.contact_details.add(detail)
+            created = True
+
+        if label is not None:
+            detail.label = label
+
+        if preferred is not None:
+            detail.preferred = preferred
+
+        if note is not None:
+            detail.note = note
+
+        detail.save()
+        return (detail, created)
 
     def get_preferred_contact_details(self):
         return self.contact_details.filter(preferred=True)
@@ -61,6 +105,20 @@ class ContactDetail(models.Model):
     def __str__(self):
         return "<ContactDetail who='{}' type='{}' value='{}'>".format(
             self.who.name, self.type, self.value
+        )
+
+
+class OtherName(models.Model):
+    who = models.ForeignKey('Expert', related_name="other_names")
+    name = models.CharField(max_length=128)
+    note = models.CharField(max_length=128, blank=True)
+    start_date = models.DateField(blank=True, null=True)
+    end_date = models.DateField(blank=True, null=True)
+    presentable = models.BooleanField()
+
+    def __str__(self):
+        return "<OtherName who='{}' name='{}' note='{}'>".format(
+            self.who.name, self.name, self.note
         )
 
 

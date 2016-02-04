@@ -10,6 +10,7 @@ from mandelbrot.models import (
     ProjectMember,
     Badge,
     BadgeAward,
+    OtherName,
 )
 
 admin.site.register(Role)
@@ -24,9 +25,15 @@ admin.site.register(ProjectMember)
 admin.site.register(Badge)
 admin.site.register(BadgeAward)
 
+admin.site.register(OtherName)
+
 
 class ProjectMembershipInline(admin.TabularInline):
     model = ProjectMember
+
+
+class OtherNameInline(admin.TabularInline):
+    model = OtherName
 
 
 class BadgeAwardInline(admin.TabularInline):
@@ -40,7 +47,8 @@ class ContactDetailInline(admin.TabularInline):
 
 class ExpertAdmin(admin.ModelAdmin):
     model = Expert
-    inlines = [ProjectMembershipInline, ContactDetailInline, BadgeAwardInline,]
+    inlines = [ProjectMembershipInline, ContactDetailInline,
+               BadgeAwardInline, OtherNameInline]
 
 
 class ProjectAdmin(admin.ModelAdmin):

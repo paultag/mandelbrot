@@ -1,4 +1,5 @@
 from django.core.management.base import BaseCommand, CommandError
+from django.db.models import Q
 
 from mandelbrot.models import Expert, ContactDetail
 from github3 import login
@@ -24,60 +25,71 @@ class Command(BaseCommand):
             ('usds', 'USDS'),
         ):
             for person in scrape(org, team):
-                print(person)
+                # print(person)
+                pass
 
 
-def update_expert(org, github_user, expert):
-    return None
-
-
-def create_expert(org, github_user):
-    public = org.is_public_member(github_user)
+def find(github_user):
+    expert_name = name(github_user)
 
     try:
-        expert = Expert.objects.get(
-            contact_details__type="github",
-            contact_details__value=github_user.login,
-        )
-        return update_expert(org, github_user, expert)
+        return Expert.by_name(expert_name)
     except Expert.DoesNotExist:
         pass
 
-    expert = Expert.objects.create(
-        id=github_user.login,
-        name=github_user.name if github_user.name else github_user.login,
-        title="Digital Services Expert",
-        photo_url=github_user.avatar_url,
-    )
+    expert = Expert.objects.filter(
+        contact_details__type="github",
+        contact_details__value=github_user.login
+    ).distinct()
 
-    expert.contact_details.add(ContactDetail.objects.create(
-        who=expert,
-        value=github_user.login,
-        label="GitHub",
-        type="github",
-        preferred=True,
-    ))
+    if len(expert) == 0:
+        raise Expert.DoesNotExist(expert_name)
+    if len(expert) != 1:
+        raise Expert.MultipleObjectsReturned(expert_name)
+    expert, = expert
+    return expert
 
-    if github_user.email:
-        expert.contact_details.add(ContactDetail.objects.create(
-            who=expert,
-            value=github_user.email,
-            label="Email",
-            note="From GitHub",
-            type="email",
-            preferred=False,
-        ))
 
-    if github_user.blog:
-        expert.contact_details.add(ContactDetail.objects.create(
-            who=expert,
-            value=github_user.blog,
-            label="homepage",
-            note="From GitHub",
-            type="website",
-            preferred=False,
-        ))
+def name(github_user):
+    return github_user.name if github_user.name else github_user.login
 
+
+def scrape_expert(org, github_user):
+    public = org.is_public_member(github_user)
+    expert_name = name(github_user)
+
+    try:
+        expert = find(github_user)
+    except Expert.DoesNotExist:
+        print(",{},GitHub Name,,,False".format(expert_name))
+        return None
+    except Expert.MultipleObjectsReturned:
+        print("Ambigious name: {}".format(expert_name))
+        return None
+
+    for type, value, preferred in (
+        ("github", github_user.login, True),
+        ("website", github_user.blog, True),
+        ("email", github_user.email, True),
+
+    ):
+        if value is None:
+            continue
+
+        detail, created = expert.add_contact_detail(
+            value=value,
+            label=None,
+            type=type,
+            preferred=preferred,
+        )
+        if created:
+            detail.label = "From GitHub"
+            detail.save()
+
+    if expert.photo_url == "":
+        expert.photo_url = github_user.avatar_url
+
+    expert.save()
     return expert
 
 
@@ -94,6 +106,6 @@ def scrape(org_name, team_name):
 
     for member in team.iter_members():
         member.refresh()
-        expert = create_expert(org, member)
-        if expert is not None:
-            yield expert
+        d = scrape_expert(org, member)
+        if d is not None:
+            yield d

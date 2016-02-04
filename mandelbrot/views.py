@@ -63,7 +63,7 @@ class ExpertsView(BoringObjectsView):
     model = Expert
 
     def lookup(self, request):
-        return Expert.objects.all()
+        return Expert.get_active()
 
 
 class ExpertView(BoringObjectView):

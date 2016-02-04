@@ -26,13 +26,15 @@ class Command(BaseCommand):
             (sections, _) = priorities.parse_document(fd.read())
 
         for project in scrape(sections):
-            print(project)
+            pass
 
 
 def role(name):
-    # name = name.title()
-    a, _ = Role.objects.get_or_create(name=name)
-    return a
+    try:
+        return Role.objects.get(name=name)
+    except Role.DoesNotExist:
+        print("Unknown Role: {},".format(name))
+        return None
 
 
 def agency(id):
@@ -40,7 +42,7 @@ def agency(id):
     a, _ = Agency.objects.get_or_create(id=id)
     if a.name == '':
         a.name = {
-            'VA': 'Veterans Affairs',
+            'VA': 'Veteran\'s Affairs',
             'DHS': "Homeland Security",
             'DOD': "Defense",
             "DOJ": "Justice",
@@ -77,9 +79,6 @@ def scrape(sections):
         for project in section.projects:
             agencies, title = project_details(project)
 
-            if 'VA' not in [x.id for x in agencies]:
-                continue
-
             db_project = Project(
                 id=django.utils.text.slugify(title),
                 name=title,
@@ -97,34 +96,34 @@ def scrape(sections):
                 if "open" in employee.name.lower():
                     continue
 
-                # print("Name", employee.name)
-                # print("Empl", employee.employer)
                 roles = [role(x) for x in employee.role.split("/")]
+                roles = [x for x in roles if x is not None]
                 part_time = employee.quantity != 1.0
+
+                if roles == []:
+                    continue
 
                 expert = None
                 try:
-                    expert = Expert.objects.get(name=employee.name)
+                    expert = Expert.by_name(employee.name)
                 except Expert.DoesNotExist:
-                    print("No such person: {}".format(employee.name))
+                    print(",{},priorities.md,,,False".format(employee.name))
+                    continue
 
-                if expert:
-                    membership = expert.memberships.filter(
+                membership = expert.memberships.filter(
+                    project=db_project,
+                    end_date__isnull=True,
+                )
+                if len(membership) == 0:
+                    m = ProjectMember(
                         project=db_project,
-                        end_date__isnull=True,
+                        who=expert,
+                        start_date=expert.start_date,
+                        part_time=part_time,
                     )
-                    if len(membership) == 0:
-                        m = ProjectMember(
-                            project=db_project,
-                            who=expert,
-                            start_date=dt.date.today(),
-                            part_time=part_time,
-                        )
-                        m.save()
-                        for r in roles:
-                            m.roles.add(r)
-                        m.save()
-
-                        print(m)
+                    m.save()
+                    for r in roles:
+                        m.roles.add(r)
+                    m.save()
 
             yield db_project
