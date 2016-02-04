@@ -1,8 +1,9 @@
 from django.core.management.base import BaseCommand, CommandError
 import django.utils.text
-from mandelbrot.models import Project, ProjectMember, Agency
+from mandelbrot.models import Project, ProjectMember, Agency, Expert, Role
 
 import os
+import datetime as dt
 import importlib.machinery
 
 loader = importlib.machinery.SourceFileLoader(
@@ -26,6 +27,12 @@ class Command(BaseCommand):
 
         for project in scrape(sections):
             print(project)
+
+
+def role(name):
+    # name = name.title()
+    a, _ = Role.objects.get_or_create(name=name)
+    return a
 
 
 def agency(id):
@@ -67,11 +74,12 @@ def scrape(sections):
         if section.title == "Projects open for staffing":
             active = True
 
-        if not active:
-            continue
-
         for project in section.projects:
             agencies, title = project_details(project)
+
+            if 'VA' not in [x.id for x in agencies]:
+                continue
+
             db_project = Project(
                 id=django.utils.text.slugify(title),
                 name=title,
@@ -84,12 +92,39 @@ def scrape(sections):
                 db_project.agencies.add(agency)
 
             for employee in project.team:
-                if employee.name.lower() == "open":
+                if employee.employer == "18F":
+                    continue
+                if "open" in employee.name.lower():
                     continue
 
-                print("Name", employee.name)
-                print("Empl", employee.employer)
-                roles = employee.role.split("/")
+                # print("Name", employee.name)
+                # print("Empl", employee.employer)
+                roles = [role(x) for x in employee.role.split("/")]
                 part_time = employee.quantity == 1.0
+
+                expert = None
+                try:
+                    expert = Expert.objects.get(name=employee.name)
+                except Expert.DoesNotExist:
+                    print("No such person: {}".format(employee.name))
+
+                if expert:
+                    membership = expert.memberships.filter(
+                        project=db_project,
+                        end_date__isnull=True,
+                    )
+                    if len(membership) == 0:
+                        m = ProjectMember(
+                            project=db_project,
+                            who=expert,
+                            start_date=dt.date.today(),
+                            part_time=part_time,
+                        )
+                        m.save()
+                        for r in roles:
+                            m.roles.add(r)
+                        m.save()
+
+                        print(m)
 
             yield db_project
