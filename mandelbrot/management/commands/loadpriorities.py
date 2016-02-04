@@ -51,6 +51,8 @@ def agency(id):
             "USTR": "United States Trade Representative",
             "DOI": "Interior",
         }.get(id, id)
+    if a.photo_url == '':
+        a.photo_url = 'http://placehold.it/600/f8f8f8?=hi'
     return a
 
 
