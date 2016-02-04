@@ -349,6 +349,10 @@ making .mdl-app-segment a grandchild element of .mdl-app.
     z-index: 0;
 }
 
+.mdl-list {
+    padding-bottom: rem(10px);
+}
+
 .mdl-project .mdl-result-card, .mdl-project .mdl-result-card:hover {
   padding: rem(20px);
   min-height: rem(120px);

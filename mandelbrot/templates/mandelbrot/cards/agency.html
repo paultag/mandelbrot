@@ -5,9 +5,9 @@
   <a href="{% url "agency" agency.id %}">
       <img class="mdl-pic" src="{{agency.photo_url}}" />
   </a>
-  <h4 class="mdl-txt-c mdl-name">{{agency.name}}</h4>
+  <h4 class="mdl-txt-c mdl-name mdl-truncate">{{agency.name}}</h4>
   <p class="mdl-meta mdl-txt-c mdl-meta mdl-truncate">
-    <span class="mdl-meta">
+    <span class="mdl-truncate mdl-meta">
         <i class="fa fa-users"></i>
         {{agency.get_active_experts|length}} DSEs
     </span>
