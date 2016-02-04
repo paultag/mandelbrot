@@ -13,13 +13,12 @@ class Expert(models.Model):
     buddy = models.ForeignKey('Expert', related_name="buddies", blank=True, null=True)
     projects = models.ManyToManyField('Project', through='ProjectMember')
     bio = models.TextField(blank=True)
-    public = models.BooleanField()
 
     def __str__(self):
         return "<Expert '{}'>".format(self.name)
 
-    def get_preferred_public_contact_details(self):
-        return self.contact_details.filter(preferred=True, public=True)
+    def get_preferred_contact_details(self):
+        return self.contact_details.filter(preferred=True)
 
     def get_active_agencies(self):
         return Agency.objects.filter(
@@ -59,7 +58,6 @@ class ContactDetail(models.Model):
     value = models.CharField(max_length=128)
     note = models.CharField(max_length=128, blank=True)
     preferred = models.BooleanField()
-    public = models.BooleanField()
 
     def __str__(self):
         return "<ContactDetail who='{}' type='{}' value='{}'>".format(

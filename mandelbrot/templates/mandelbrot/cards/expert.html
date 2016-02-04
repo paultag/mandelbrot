@@ -8,7 +8,7 @@
     </a>
 
     <div class="mdl-social-block">
-    {% for contact_detail in expert.get_preferred_public_contact_details %}
+    {% for contact_detail in expert.get_preferred_contact_details %}
         {% if contact_detail.type == "phone" %}
 <a class="usa-button" href="tel:{{contact_detail.value}}"><i class="fa fa-mobile"></i></a>
         {% endif %}
