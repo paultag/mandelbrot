@@ -63,16 +63,13 @@ class ExpertsView(BoringObjectsView):
     model = Expert
 
     def lookup(self, request):
-        return Expert.objects.filter(public=True)
+        return Expert.objects.all()
 
 
 class ExpertView(BoringObjectView):
     name = "expert"
     template = "mandelbrot/expert.html"
     model = Expert
-
-    def authorized(self, who, request, *args, **kwargs):
-        return not (request.user.is_anonymous and who.public is False)
 
 # }}}
 

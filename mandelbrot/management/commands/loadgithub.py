@@ -46,9 +46,7 @@ def create_expert(org, github_user):
     expert = Expert.objects.create(
         id=github_user.login,
         name=github_user.name if github_user.name else github_user.login,
-        public=True,
         title="Digital Services Expert",
-        # public=public,
         photo_url=github_user.avatar_url,
     )
 
@@ -56,7 +54,6 @@ def create_expert(org, github_user):
         who=expert,
         value=github_user.login,
         label="GitHub",
-        public=public,
         type="github",
         preferred=True,
     ))
@@ -67,7 +64,6 @@ def create_expert(org, github_user):
             value=github_user.email,
             label="Email",
             note="From GitHub",
-            public=False,
             type="email",
             preferred=False,
         ))
@@ -78,7 +74,6 @@ def create_expert(org, github_user):
             value=github_user.blog,
             label="homepage",
             note="From GitHub",
-            public=True,
             type="website",
             preferred=False,
         ))
