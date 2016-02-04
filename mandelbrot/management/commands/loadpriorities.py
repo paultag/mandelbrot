@@ -100,7 +100,7 @@ def scrape(sections):
                 # print("Name", employee.name)
                 # print("Empl", employee.employer)
                 roles = [role(x) for x in employee.role.split("/")]
-                part_time = employee.quantity == 1.0
+                part_time = employee.quantity != 1.0
 
                 expert = None
                 try:

@@ -24,11 +24,11 @@ def humanize_delta(value):
 
 
 @register.filter(name='humanize_list')
-def human_list(values):
+def human_list(values, empty=""):
     names = [x.name for x in values]
 
     if len(names) == 0:
-        return ""
+        return empty
     if len(names) == 1:
         return names[0]
 

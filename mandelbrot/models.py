@@ -46,7 +46,6 @@ CONTACT_TYPES = [
     ("twitter", "Twitter"),
     ("github", "GitHub"),
     ("yo", "Yo"),
-    ("slack", "Slack"),
     ("website", "Cyber Website"),
 ]
 

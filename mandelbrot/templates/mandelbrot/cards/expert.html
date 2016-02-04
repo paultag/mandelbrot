@@ -25,7 +25,7 @@
 
     <h4 class="mdl-txt-c mdl-name">{{expert.name}}</h4>
     <p class="mdl-meta mdl-txt-c mdl-meta mdl-truncate">
-        {{expert.get_active_agencies|humanize_list}}
+        {{expert.get_active_agencies|humanize_list:"United States Digital Service"}}
     </p>
 {% endwith %}
 {% endblock %}
