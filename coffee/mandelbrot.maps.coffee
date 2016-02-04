@@ -13,7 +13,7 @@ renderMaps = (maps) ->
 renderMap = (domMap) ->
     latitude = domMap.getAttribute 'data-latitude'
     longitude = domMap.getAttribute 'data-longitude'
-    map = L.map(domMap).setView([latitude, longitude], 13)
+    map = L.map(domMap).setView([latitude, longitude], 15)
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {}).addTo(map)
     map.removeControl map.zoomControl
     map.removeControl map.attributionControl
