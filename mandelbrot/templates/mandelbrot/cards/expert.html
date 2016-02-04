@@ -2,6 +2,7 @@
 {% load humanize %}
 
 {% block card %}
+{% with item as expert %}
     <a href="{% url "expert" expert.id %}">
         <img class="mdl-pic" src="{{expert.photo_url}}" />
     </a>
@@ -26,4 +27,5 @@
     <p class="mdl-meta mdl-txt-c mdl-meta mdl-truncate">
         {{expert.get_active_agencies|humanize_list}}
     </p>
+{% endwith %}
 {% endblock %}

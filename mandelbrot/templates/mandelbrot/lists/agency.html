@@ -1,5 +1,3 @@
 {% load humanize %}
 
-{% for agency in agencies %}
-    {% include "mandelbrot/cards/agency.html" %}
-{% endfor %}
+{% include "mandelbrot/lists/list.html" with template="mandelbrot/cards/agency.html" count=3 list=agencies %}

@@ -1,6 +1,7 @@
 {% extends "mandelbrot/cards/card.html" %}
 
 {% block card %}
+{% with item as agency %}
   <a href="{% url "agency" agency.id %}">
       <img class="mdl-pic" src="{{agency.photo_url}}" />
   </a>
@@ -11,4 +12,5 @@
         {{agency.get_active_experts|length}} DSEs
     </span>
   </p>
+{% endwith %}
 {% endblock %}

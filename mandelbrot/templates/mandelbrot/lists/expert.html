@@ -1,5 +1,1 @@
-{% load humanize %}
-
-{% for expert in experts %}
-    {% include "mandelbrot/cards/expert.html" %}
-{% endfor %}
+{% include "mandelbrot/lists/list.html" with template="mandelbrot/cards/expert.html" count=3 list=experts %}

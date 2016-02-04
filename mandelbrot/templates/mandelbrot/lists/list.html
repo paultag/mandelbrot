@@ -1,0 +1,9 @@
+<div class="usa-grid mdl-list ">
+{% for item in list %}
+    {% include template %}
+    {% if forloop.counter|divisibleby:count %}
+</div>
+<div class="usa-grid mdl-list">
+    {% endif %}
+{% endfor %}
+</div>
