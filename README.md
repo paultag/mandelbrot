@@ -17,6 +17,7 @@ Importing data
 ```
 ./manage.py migrate
 ./manage.py loadsalesforce ~/staff.csv
+./manage.py loadpriorities
 ./manage.py loadmappings ~/mappings/
 ./manage.py loadgithub
 ./manage.py loadpriorities
