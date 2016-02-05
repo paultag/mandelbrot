@@ -16,6 +16,7 @@ def get_expert(name):
             name=name,
             active=False,
             start_date=dt.date.today(),
+            title="DSE",
         )
         return whom
 
