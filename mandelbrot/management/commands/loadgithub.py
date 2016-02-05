@@ -70,7 +70,7 @@ def scrape_expert(org, github_user):
     for type, value, preferred in (
         ("github", github_user.login, True),
         ("website", github_user.blog, True),
-        ("email", github_user.email, True),
+        ("email", github_user.email, False),
 
     ):
         if value is None:
