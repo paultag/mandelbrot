@@ -1,4 +1,4 @@
-from django.db.models import Q
+from django.db.models import Q, Count
 from django.db import models
 import datetime as dt
 import importlib
@@ -204,6 +204,12 @@ class Agency(models.Model):
             memberships__end_date=None
         ).distinct()
 
+    @classmethod
+    def filter_by_size(cls, **query):
+        return cls.objects.filter(**query).annotate(
+            num_dses=Count('projects__memberships')
+        ).order_by('-num_dses')
+
 
 class Project(models.Model):
     id = models.CharField(max_length=128, primary_key=True)
@@ -225,6 +231,12 @@ class Project(models.Model):
         return self.memberships.filter(
             end_date__isnull=False
         ).order_by('end_date')
+
+    @classmethod
+    def filter_by_size(cls, **query):
+        return cls.objects.filter(**query).annotate(
+            num_dses=Count('memberships')
+        ).order_by('-num_dses')
 
 
 class ProjectMember(models.Model):

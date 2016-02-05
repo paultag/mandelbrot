@@ -81,7 +81,8 @@ class ProjectsView(BoringObjectsView):
     model = Project
 
     def lookup(self, request):
-        return Project.objects.filter(active=True)
+        # return Project.objects.filter(active=True)
+        return Project.filter_by_size(active=True)
 
 class ProjectView(BoringObjectView):
     name = 'project'
@@ -110,6 +111,10 @@ class AgenciesView(BoringObjectsView):
     name = "agencies"
     template = "mandelbrot/agencies.html"
     model = Agency
+
+    def lookup(self, request):
+        # return Project.objects.filter(active=True)
+        return Agency.filter_by_size()
 
 class AgencyView(BoringObjectView):
     name = "agency"
