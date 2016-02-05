@@ -4,7 +4,7 @@
               <li>
                   <a href="{% url "project" membership.project.id %}">{{membership.project.name}}</a>
                   <span class="mdl-meta"> 
-                      {% if membership.end_date %}
+                      {% if membership.end_date or not membership.project.active %}
                       (Past)
                       {% else %}
                       ({{membership.get_duration|humanize_timedelta}}, {{membership.roles.all|humanize_list}}{% if membership.part_time %}, Part Time{% endif %})
