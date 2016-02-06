@@ -2,7 +2,7 @@ import os
 import dj_database_url
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SECRET_KEY = 'changeme'
+SECRET_KEY = os.environ.get("SECRET_KEY", "changeme")
 ALLOWED_HOSTS = []
 
 DEBUG = os.environ.get("DJANGO_DEBUG", "True").lower() == "true"
@@ -73,6 +73,9 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
+
+if 'STATIC_ROOT' in os.environ:
+    STATIC_ROOT = os.environ['STATIC_ROOT']
 
 try:
     from local_settings import *
