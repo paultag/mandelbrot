@@ -28,6 +28,7 @@ class ExpertView(APIView, ExpertView):
 
         'contact_details.type', 'contact_details.value',
         'contact_details.label', 'contact_details.note',
+        'contact_details.preferred',
 
         'memberships.project.id', 'memberships.project.name',
         'memberships.project.active', 'memberships.start_date',
@@ -45,6 +46,7 @@ class ExpertsView(APIView, ExpertsView):
 
         'contact_details.type', 'contact_details.value',
         'contact_details.label', 'contact_details.note',
+        'contact_details.preferred',
     )
 
 
