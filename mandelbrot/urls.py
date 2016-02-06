@@ -1,5 +1,6 @@
-from django.conf.urls import url
+from django.conf.urls import url, include
 import mandelbrot.views
+import mandelbrot.api.urls
 
 urlpatterns = [
     url(r'^$', mandelbrot.views.home, name='home'),
@@ -15,4 +16,6 @@ urlpatterns = [
 
     url(r'^agencies/$', mandelbrot.views.AgenciesView.as_view(), name='agencies'),
     url(r'^agency/(?P<id>.*)/$', mandelbrot.views.AgencyView.as_view(), name='agency'),
+
+    url(r'^api/', include(mandelbrot.api.urls)),
 ]

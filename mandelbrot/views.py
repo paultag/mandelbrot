@@ -3,12 +3,15 @@ from django.views.generic import View
 
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+import json
 
 from .models import Expert, Office, Project, Agency
+from .utils import serialize, JSONEncoderPlus
 
 
 def home(request):
     return render(request, 'mandelbrot/home.html', {"experts": Expert.objects.all()})
+
 
 # Class-based view utility classes {{{
 
@@ -26,17 +29,9 @@ class MandelbrotView(View):
         if self.name is None:
             raise NotImplementedError("You forgot `name` on your view")
 
-        # flavors = request.META['HTTP_ACCEPT'].split(",")
-        # encoding = "text/html"
-        # if len(flavors) > 0:
-        #     encoding = flavors[0]
-
         data = self.lookup(request, *args, **kwargs)
         if not self.authorized(data, request, *args, **kwargs):
             raise self.model.DoesNotExist()
-
-        # if encoding == "application/json":
-        #     return self.json(request, data)
 
         return render(request, self.template, {self.name: data})
 
