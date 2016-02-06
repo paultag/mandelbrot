@@ -3,7 +3,11 @@ import json
 
 from ..models import Expert, Office, Project, Agency
 from ..utils import serialize, JSONEncoderPlus, prefetch_constraints
-from ..views import MandelbrotView, ExpertView, ExpertsView
+from ..views import (
+    MandelbrotView,
+    ExpertView, ExpertsView,
+    ProjectView, ProjectsView,
+)
 
 
 class APIView(MandelbrotView):
@@ -39,6 +43,7 @@ class ExpertView(APIView, ExpertView):
         'badges.awarded_by.id', 'badges.awarded_by.name',
     )
 
+
 class ExpertsView(APIView, ExpertsView):
     fields = (
         'id', 'name', 'photo_url', 'title', 'active',
@@ -47,6 +52,37 @@ class ExpertsView(APIView, ExpertsView):
         'contact_details.type', 'contact_details.value',
         'contact_details.label', 'contact_details.note',
         'contact_details.preferred',
+    )
+
+
+class ProjectView(APIView, ProjectView):
+    fields = (
+        'id', 'name', 'mission', 'description',
+        'active',
+
+        'offices.id', 'offices.name',
+        'offices.latitude', 'offices.longitude',
+        'offices.address', 'offices.tips',
+
+        'agencies.id', 'agencies.name',
+
+        'memberships.who.id', 'memberships.who.name',
+        'memberships.who.active', 'memberships.start_date',
+        'memberships.end_date', 'memberships.roles.name',
+        'memberships.part_time',
+    )
+
+
+class ProjectsView(APIView, ProjectsView):
+    fields = (
+        'id', 'name', 'mission', 'description',
+        'active',
+        'agencies.id', 'agencies.name',
+
+        'memberships.who.id', 'memberships.who.name',
+        'memberships.who.active', 'memberships.start_date',
+        'memberships.end_date', 'memberships.roles.name',
+        'memberships.part_time',
     )
 
 
