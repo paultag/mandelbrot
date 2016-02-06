@@ -4,3 +4,4 @@ Markdown
 humanize
 github3.py
 dj_database_url
+dj-static

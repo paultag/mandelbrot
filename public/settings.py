@@ -73,9 +73,8 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
+STATIC_ROOT = 'staticfiles'
 
-if 'STATIC_ROOT' in os.environ:
-    STATIC_ROOT = os.environ['STATIC_ROOT']
 
 try:
     from local_settings import *
