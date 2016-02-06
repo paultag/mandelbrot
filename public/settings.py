@@ -61,7 +61,7 @@ DATABASES = {
 }
 
 if 'DATABASE_URI' in os.environ:
-    DATABASES = dj_database_url.parse(os.environ.get('DATABASE_URI'))
+    DATABASES['default'] = dj_database_url.parse(os.environ.get('DATABASE_URI'))
 
 
 LANGUAGE_CODE = 'en-us'
