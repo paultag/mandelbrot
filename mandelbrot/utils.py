@@ -19,8 +19,10 @@ class JSONEncoderPlus(json.JSONEncoder):
 
 
 
-def split(el):
-    els = el.split(".", 1)
+def split(el, reverse=False):
+    function = el.split if not reverse else el.rsplit
+
+    els = function(".", 1)
     if len(els) == 0:
         raise IndexError("What the hell did you give me")
     if len(els) == 1:
@@ -37,6 +39,16 @@ def chunk(constraints):
             root = None  # "Top level" ID
         ret[root].append(remainder)
     return ret
+
+
+def prefetch_constraints(constraints, obj):
+    def fields(constraints):
+        for constraint in constraints:
+            path, remainder = split(constraint, reverse=True)
+            if remainder == "":
+                continue
+            yield path
+    return obj.prefetch_related(*set(fields(constraints)))
 
 
 def serialize(constraints, obj):

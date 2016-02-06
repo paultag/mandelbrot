@@ -2,7 +2,7 @@ from django.http import HttpResponse
 import json
 
 from ..models import Expert, Office, Project, Agency
-from ..utils import serialize, JSONEncoderPlus
+from ..utils import serialize, JSONEncoderPlus, prefetch_constraints
 from ..views import MandelbrotView, ExpertView, ExpertsView
 
 
