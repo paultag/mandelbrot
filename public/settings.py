@@ -1,4 +1,5 @@
 import os
+import dj_database_url
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'changeme'
@@ -58,6 +59,9 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+if 'DATABASE_URI' in os.environ:
+    DATABASES = dj_database_url.parse(os.environ.get('DATABASE_URI'))
 
 
 LANGUAGE_CODE = 'en-us'
