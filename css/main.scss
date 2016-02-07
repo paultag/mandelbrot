@@ -60,7 +60,7 @@ body {
 }
 
 p, h1, h2, h3, h4, h5, h6 {
-	font-family: $font-sans;
+  font-family: $font-sans;
 }
 
 .mdl-app .usa-heading-alt {
@@ -73,34 +73,34 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 .blue-bg {
-    background-color: $color-mdl-blue;
-    color: white;
+  background-color: $color-mdl-blue;
+  color: white;
 }
 
 /*----------------------------------*
 * Globals, Resets, and overrides
 *-----------------------------------*/
 .mdl-txt-c {
-    text-align: center;
+  text-align: center;
 }
 .mdl-txt-r {
-    text-align: right;
+  text-align: right;
 }
 .mdl-txt-l {
-    text-align: left;
+  text-align: left;
 }
 .mdl-txt-uc {
-    text-transform: uppercase;
+  text-transform: uppercase;
 }
 .mdl-meta {
-    color: $color-gray;
-    font-weight: 300;
+  color: $color-gray;
+  font-weight: 300;
 } 
 
 .mdl-truncate {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 
@@ -125,51 +125,51 @@ or right
 * Application navigation bar  *
 * ============================*/
 .mdl-nav {
-    background: $color-mdl-blue;
-    color: $color_white;
-    padding: rem(30px) 0;
+  background: $color-mdl-blue;
+  color: $color_white;
+  padding: rem(30px) 0;
+  position: relative;
+
+  .usa-grid {
     position: relative;
+  }
 
-    .usa-grid {
-        position: relative;
-    }
-
-    .mdl-dropdown {
-        position: absolute;
-        right: rem(112px);
-    }
+  .mdl-dropdown {
+    position: absolute;
+    right: rem(112px);
+  }
 }
 
 .mdl-logo {
-    color: $color-white;
-    margin-right: rem(20px);
+  color: $color-white;
+  margin-right: rem(20px);
 }
 
 .mdl-app-screen {
-    margin: auto;
-    width: 90%;
+  margin: auto;
+  width: 90%;
 }
 
 ul.mdl-nav-links {
-    display: inline-block;
-    float: right;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
+  display: inline-block;
+  float: right;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
 }
 ul.mdl-nav-links > li {
   float: right;
 }
 ul.mdl-nav-links > li a {
-    color: $color_white;
-    display: inline-block;
-    text-align: center;
-    padding: 0 0 rem(10px) rem(20px);
-    text-decoration: none;
-    &:hover {
-      color: darken($color_white, 10%)
-    }
+  color: $color_white;
+  display: inline-block;
+  text-align: center;
+  padding: 0 0 rem(10px) rem(20px);
+  text-decoration: none;
+  &:hover {
+    color: darken($color_white, 10%)
+  }
 
 }
 
@@ -194,17 +194,17 @@ ul.mdl-nav-links > li a {
 * Page Banner
 * ============================*/
 
-.mdl-banner {	
+.mdl-banner { 
   background: $color-mdl-blue;
   color: $color_white;
   padding: rem(40px) 0;
   padding-bottom: rem(100px);
   position: relative;    
   .usa-display {
-  	margin:0;
+    margin:0;
   }
-	.usa-grid {
-		position: relative;
+  .usa-grid {
+    position: relative;
   }
 }
 
@@ -279,10 +279,10 @@ making .mdl-app-segment a grandchild element of .mdl-app.
 * ============================*/
 .mdl-sidebar {
     padding-right: rem(40px);
-	.mdl-pic {
-		border: 1px solid $color-gray-light;
-		border-radius: rem(3px);
-	}
+  .mdl-pic {
+    border: 1px solid $color-gray-light;
+    border-radius: rem(3px);
+  }
 }
 
 
@@ -326,8 +326,12 @@ making .mdl-app-segment a grandchild element of .mdl-app.
   color: $color-mdl-blue;
   border-radius: rem(3px);
   min-height: rem(250px);
+  margin-bottom: rem(20px);
   .mdl-name, .mdl-meta {
     margin: 0;
+  }
+  .mdl-pic {
+    border: 1px solid $color-gray-light;
   }
   .mdl-name {
     padding-top: rem(10px);
@@ -337,43 +341,34 @@ making .mdl-app-segment a grandchild element of .mdl-app.
   }
 }
 
-.mdl-profile .mdl-result-card .mdl-pic {
-  width: rem(175px);
-  border-radius: rem(175px);
-  border: 1px solid $color-gray-light;
-}
-
-.mdl-map {
+// Profile Results
+.mdl-profile .mdl-result-card {
+  .mdl-pic {
     width: rem(175px);
     height: rem(175px);
-    z-index: 0;
+    border-radius: rem(175px);
+  }
 }
 
-.mdl-list {
-    padding-bottom: rem(17px);
+// Map Results
+.mdl-map {
+  width: rem(175px);
+  height: rem(175px);
+  z-index: 0;
 }
 
-.mdl-project .mdl-result-card, .mdl-project .mdl-result-card:hover {
+// Project Results
+.mdl-project .mdl-result-card {
   padding: rem(20px);
   min-height: rem(120px);
-  margin-bottom: rem(20px);
-
   .mdl-name {
     margin: 0;
   }
-
   .mdl-pic {
-    margin: 10px 0 ;
-  }
-  .mdl-pic img {
-    border: 1px solid $color-gray-light;
     border-radius: 3px;
     float: right;
-    background-color: $color-mdl-red;
     width: rem(32px);
     height: rem(32px);
     margin: rem(3px);
   }
-
-
 }
