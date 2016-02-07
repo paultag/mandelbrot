@@ -4,7 +4,11 @@
 {% block card %}
 {% with item as expert %}
     <a href="{% url "expert" expert.id %}">
-        <img class="mdl-pic" src="{{expert.photo_url}}" />
+        {% if expert.photo_url == '' %}
+            <img class="mdl-pic" src="/static/img/default-pic.png" />
+        {% else %}
+            <img class="mdl-pic" src="{{expert.photo_url}}" />
+        {% endif %}
     </a>
 
     <div class="mdl-social-block">
