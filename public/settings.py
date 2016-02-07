@@ -3,7 +3,7 @@ import dj_database_url
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get("SECRET_KEY", "changeme")
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 DEBUG = os.environ.get("DJANGO_DEBUG", "True").lower() == "true"
 # DEBUG = True
