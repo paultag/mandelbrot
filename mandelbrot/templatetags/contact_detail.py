@@ -17,6 +17,7 @@ def contact_detail_fontawesome(cd):
         "twitter": "fa-twitter",
         "yo": "fa-square",
         "website": "fa-external-link",
+        "slack": "fa-slack",
     }.get(cd.type, 'fa-link')
 
 
@@ -29,4 +30,5 @@ def contact_detail_href(cd):
         "github": "https://github.com/{}",
         "twitter": "https://twitter.com/@{}",
         "yo": "yo:{}",
+        "slack": "https://veteranaffairs.slack.com/messages/{}/",
     }.get(cd.type, '{}').format(cd.value)

@@ -85,6 +85,7 @@ class Expert(models.Model):
 
 CONTACT_TYPES = [
     ("email", "E-Mail"),
+    ("slack", "Slack"),
     ("phone", "Phone"),
     ("fax", "Fax"),
     ("twitter", "Twitter"),
