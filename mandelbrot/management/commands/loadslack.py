@@ -45,7 +45,7 @@ def scrape():
             continue
 
         if who.photo_url == "":
-            who.photo_url = person.get('profile', {}).get('image_1024', "")
+            who.photo_url = person.get('profile', {}).get('image_original', "")
 
         phone = person.get("profile", {}).get("phone", None)
         if phone is not None:
