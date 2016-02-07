@@ -48,7 +48,7 @@ def scrape():
             who.photo_url = person.get('profile', {}).get('image_original', "")
 
         phone = person.get("profile", {}).get("phone", None)
-        if phone is not None:
+        if phone is not None and phone != "":
             detail, created = who.add_contact_detail(
                 value=phone,
                 label=None,
