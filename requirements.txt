@@ -2,6 +2,8 @@ Django
 -e git+https://github.com/department-of-veterans-affairs/django-designstandards.git#egg=designstandards
 Markdown
 humanize
-github3.py
 dj_database_url
 dj-static
+
+# psycopg2
+# github3.py
