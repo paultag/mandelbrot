@@ -45,7 +45,19 @@ def scrape():
             continue
 
         if who.photo_url == "":
-            who.photo_url = person.get('image_1024')
+            who.photo_url = person.get('profile', {}).get('image_1024', "")
+
+        phone = person.get("profile", {}).get("phone", None)
+        if phone is not None:
+            detail, created = who.add_contact_detail(
+                value=phone,
+                label=None,
+                type='phone',
+                preferred=True,
+            )
+            if created:
+                detail.label = "From Slack"
+                detail.save()
 
         detail, created = who.add_contact_detail(
             value=person['name'],
@@ -57,6 +69,5 @@ def scrape():
             detail.label = "From Slack"
             detail.save()
 
-
-        if False:
-            yield
+        who.save()
+        yield who
