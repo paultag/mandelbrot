@@ -16,7 +16,7 @@
   <body{% block "bodyhack" %}{% endblock %}>
     <nav class="mdl-nav">
         <div class="usa-grid">
-          <strong class="mdl-logo">Mandelbrot</strong>
+          <a class="mdl-logo" href="{% url "home" %}"><strong>Mandelbrot</strong></a>
           <span class="mdl-application-title"></span>
           <ul class="mdl-nav-links usa-unstyled-list">
             <li><a href="{% url "agencies" %}">Agencies</a></li>

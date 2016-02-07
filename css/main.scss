@@ -140,9 +140,13 @@ or right
   }
 }
 
-.mdl-logo {
+.mdl-logo, .mdl-logo:visited {
   color: $color-white;
   margin-right: rem(20px);
+  &:hover {
+    color: darken($color_white, 10%);
+    text-decoration: none;
+  }
 }
 
 .mdl-app-screen {
@@ -162,10 +166,12 @@ ul.mdl-nav-links > li {
   float: right;
 }
 ul.mdl-nav-links > li a {
+  font-size: 0.9em;
   color: $color_white;
   display: inline-block;
   text-align: center;
-  padding: 0 0 rem(10px) rem(20px);
+  text-transform: uppercase;
+  padding: 0 0 rem(10px) rem(30px);
   text-decoration: none;
   &:hover {
     color: darken($color_white, 10%)
