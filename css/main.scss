@@ -1,6 +1,6 @@
 
 $color-mdl-red: #EB586F;
-$color-mdl-light-grey: #D8E9F0;
+$color-mdl-light-grey: #e6e6e6;
 $color-mdl-blue: #4AA0D5;
 $color-mdl-dark-grey: #454553;
 
@@ -238,7 +238,6 @@ ul.mdl-nav-links > li a {
 
 
 
-
 /*
 .mdl-app-segment represents a chunk of an application's
 page Should be an immediate child of .mdl-app. Avoid
@@ -273,6 +272,27 @@ making .mdl-app-segment a grandchild element of .mdl-app.
     }
 }
 
+/* ===========================*
+* Site Stats
+* ============================*/
+
+.mdl-site-stats  {
+  background-color: $color-white;
+  padding: 10px 20px 40px 20px;
+  color: $color-mdl-blue;
+  box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+  width: 50%;
+  margin: 2em auto;
+  table {
+    margin: 0;
+  }
+  th, td {
+    border-color: $color-mdl-light-grey;  
+  }
+  
+
+}
 
 /* ===========================*
 * Profile Page             
@@ -280,7 +300,7 @@ making .mdl-app-segment a grandchild element of .mdl-app.
 .mdl-sidebar {
     padding-right: rem(40px);
   .mdl-pic {
-    border: 1px solid $color-gray-light;
+    border: 1px solid $color-mdl-light-grey;  
     border-radius: rem(3px);
   }
 }
@@ -300,8 +320,7 @@ making .mdl-app-segment a grandchild element of .mdl-app.
   }
 }
 
-.mdl-social-block > a.usa-button {
-  background-color: $color-mdl-blue;
+.mdl-social-block > a.usa-button, .mdl-social-block > a.usa-button-disabled {
   color: $color-white;
   width: rem(60px);
   i {
@@ -309,6 +328,9 @@ making .mdl-app-segment a grandchild element of .mdl-app.
   }
 }
 
+.mdl-social-block > a.usa-button {
+  background-color: $color-mdl-blue;
+}
 
 
 
@@ -331,7 +353,7 @@ making .mdl-app-segment a grandchild element of .mdl-app.
     margin: 0;
   }
   .mdl-pic {
-    border: 1px solid $color-gray-light;
+    border: 1px solid $color-mdl-light-grey;  
   }
   .mdl-name {
     padding-top: rem(10px);

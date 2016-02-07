@@ -6,6 +6,31 @@
 <div id="main" class="usa-grid">
   <div class="mdl-app">
     <div class="mdl-app-segment">
+    	  <p class="usa-font-lead mdl-txt-c">Welcome to Mandelbrot, the team directory of the United States Digital Service.</p>
+
+    	  <div class="mdl-site-stats">
+    	  	<table class="usa-table-borderless">
+			    <thead>
+			      <tr>
+			        <th scope="col"></th>
+			        <th scope="col">Current</th>
+			        <th scope="col">Past</th>
+			      </tr>
+			    </thead>
+			    <tbody>
+			      <tr>
+			        <th scope="row">People</th>
+			        <td>{{people.active.count}}</td>
+			        <td>{{people.inactive.count}}</td>
+			      </tr>
+			      <tr>
+			        <th scope="row">Projects</th>
+			        <td>{{projects.active.count}}</td>
+			        <td>{{people.inactive.count}}</td>
+			      </tr>
+			    </tbody>
+			  </table>
+    	  </div>
     </div>
   </div>
 </div>
