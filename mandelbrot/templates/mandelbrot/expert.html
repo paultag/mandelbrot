@@ -6,7 +6,11 @@
     <div class="mdl-banner mdl-profile">
       <div class="usa-grid">
           
+          {% if expert.photo_url == "" %}
+          <img class="mdl-pic" src="/static/img/default-pic.png">
+          {% else %}
           <img class="mdl-pic" src="{{expert.photo_url}}">
+          {% endif %}
           <h3 class="usa-display">{{expert.name}}</h3>
           <!-- XXX: Add title
           <h4>{{expert.title}}</h4>

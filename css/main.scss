@@ -215,6 +215,8 @@ ul.mdl-nav-links > li a {
 .mdl-profile .mdl-pic {
     margin: 0 auto;
     width: rem(250px);
+    height: rem(250px);
+    border: 1px solid $color-mdl-light-grey;
     border-radius: rem(250px);
     margin-bottom: rem(20px);
 }
