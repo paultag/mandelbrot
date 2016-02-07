@@ -15,7 +15,11 @@
             <div class="usa-width-one-third">
 {% for membership in project.get_active_memberships %}
             <a href="{% url "expert" membership.who.id %}">
+              {% if membership.who.photo_url == "" %}
+              <img class="mdl-pic" src="/static/img/default-pic.png" />
+              {% else %}
               <img class="mdl-pic" src="{{membership.who.photo_url}}" />
+              {% endif %}
             </a>
 {% endfor %}
             </div>
