@@ -61,7 +61,7 @@ def agency(id):
             "DOI": "Interior",
         }.get(id, id)
     if a.photo_url == '':
-        a.photo_url = 'http://placehold.it/600/f8f8f8?=hi'
+        a.photo_url = '/static/img/seals/{}.png'.format(id.lower())
     return a
 
 
