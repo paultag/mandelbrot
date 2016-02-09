@@ -205,6 +205,12 @@ class Agency(models.Model):
             memberships__end_date=None
         ).distinct()
 
+    def get_active_offices(self):
+        return Office.objects.filter(
+            projects__agencies=self,
+            projects__active=True,
+        ).distinct()
+
     @classmethod
     def filter_by_size(cls, **query):
         return cls.objects.filter(**query).annotate(
