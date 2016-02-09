@@ -380,11 +380,13 @@ making .mdl-app-segment a grandchild element of .mdl-app.
   }
 }
 
-// Map Results
-.mdl-map {
-  width: rem(175px);
-  height: rem(175px);
-  z-index: 0;
+.mdl-result-card {
+  // Map Results
+  .mdl-map {
+    width: rem(175px);
+    height: rem(175px);
+    z-index: 0;
+  }
 }
 
 // Project Results
@@ -401,4 +403,10 @@ making .mdl-app-segment a grandchild element of .mdl-app.
     height: rem(32px);
     margin: rem(3px);
   }
+}
+
+// office page
+.mdl-office .mdl-map {
+  width: rem(650px);
+  height: rem(400px);
 }
