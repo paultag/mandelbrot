@@ -72,7 +72,6 @@ class Command(BaseCommand):
                 continue
             detail, created = person.add_contact_detail(value=value, type=type)
             if created:
-                detail.label = key
                 if preferred:
                     detail.preferred = preferred
             detail.save()
