@@ -1,5 +1,7 @@
 {% extends "mandelbrot/cards/card.html" %}
 
+{% block detail_url %}{% url "agency" item.id %}{% endblock %}
+
 {% block card %}
 {% with item as agency %}
   <a href="{% url "agency" agency.id %}">

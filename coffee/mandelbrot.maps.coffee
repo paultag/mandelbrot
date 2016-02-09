@@ -20,6 +20,10 @@ renderMap = (domMap) ->
     L.marker([latitude, longitude]).addTo(map)
     map
 
+oldonload = window.onload
+
 # On load, we'll render anything that's a `mdl-map`.
 window.onload = ->
     renderMaps document.getElementsByClassName "mdl-map"
+    if oldonload
+        oldonload()

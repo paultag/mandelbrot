@@ -1,6 +1,8 @@
 {% extends "mandelbrot/cards/card.html" %}
 {% load humanize %}
 
+{% block detail_url %}{% url "expert" item.id %}{% endblock %}
+
 {% block card %}
 {% with item as expert %}
     <a href="{% url "expert" expert.id %}">

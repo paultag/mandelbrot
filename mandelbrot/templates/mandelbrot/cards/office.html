@@ -1,5 +1,7 @@
 {% extends "mandelbrot/cards/card.html" %}
 
+{% block detail_url %}{% url "office" item.id %}{% endblock %}
+
 {% block card %}
 {% with item as office %}
     <div class='mdl-pic mdl-map'

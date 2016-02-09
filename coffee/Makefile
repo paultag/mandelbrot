@@ -1,4 +1,4 @@
-COFFEE_SCRIPTS = mandelbrot.maps.min.js
+COFFEE_SCRIPTS = mandelbrot.maps.min.js cards.min.js
 
 .SUFFIXES:
 .SUFFIXES: .coffee .js .min.js
