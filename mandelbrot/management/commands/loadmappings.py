@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand, CommandError
-from mandelbrot.models import Expert, OtherName, Role
+from mandelbrot.models import Expert, OtherName, Role, Office
 
 import datetime as dt
 
@@ -7,11 +7,29 @@ import csv
 import os
 
 
-def role_importer(_, stream):
+def role_importer(stream):
     for mapping in stream:
         Role.objects.get_or_create(**mapping)
 
-def name_importer(_, stream):
+
+def office_importer(stream):
+    text_fields = ['address', 'tips']
+    for mapping in stream:
+        for field in text_fields:
+            mapping[field] = mapping[field].replace("\\n", "\n")
+
+        try:
+            office = Office.objects.get(id=mapping['id'])
+        except Office.DoesNotExist:
+            office = Office(id=mapping['id'])
+        for k, v in mapping.items():
+            setattr(office, k, v)
+
+        office.save()
+
+
+
+def name_importer(stream):
     def fix_mapping(mapping):
         ret = {}
         for k, v in mapping.items():
@@ -43,8 +61,9 @@ def name_importer(_, stream):
 
 
 FLAVORS = (
-    (OtherName, "names.csv", name_importer),
-    (Role,      "roles.csv", role_importer),
+    ("names.csv",   name_importer),
+    ("roles.csv",   role_importer),
+    ("offices.csv", office_importer),
 )
 
 
@@ -55,6 +74,6 @@ class Command(BaseCommand):
         parser.add_argument(type=str, dest='path', help='mapping dir')
 
     def handle(self, *args, path, **options):
-        for model, csv_path, function in FLAVORS:
+        for csv_path, function in FLAVORS:
             with open(os.path.join(path, csv_path), 'r') as fd:
-                function(model, csv.DictReader(fd))
+                function(csv.DictReader(fd))
