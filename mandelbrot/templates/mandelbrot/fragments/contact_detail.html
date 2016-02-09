@@ -2,4 +2,7 @@
 
 <i class="fa fa-fw {{contact_detail|contact_detail_fontawesome}}"></i>
 <a href="{{contact_detail|contact_detail_href}}"> {{contact_detail.value}}</a>
-{% if note %}<span class="mdl-meta">({{contact_detail.label}})</span>{% endif %}
+{% comment %}
+{% if contact_detail.label %}<span class="mdl-meta">({{contact_detail.label}})</span>{% endif %}
+{% endcomment %}
+{% if contact_detail.note %}<span class="mdl-meta">({{contact_detail.note}})</span>{% endif %}
