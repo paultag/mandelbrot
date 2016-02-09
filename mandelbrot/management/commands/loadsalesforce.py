@@ -74,6 +74,10 @@ class Command(BaseCommand):
             if created:
                 if preferred:
                     detail.preferred = preferred
+
+                if value.endswith(".gov"):
+                    detail.note = "Official Email"
+
             detail.save()
         person.save()
         return person
