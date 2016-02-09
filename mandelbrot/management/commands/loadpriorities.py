@@ -83,6 +83,7 @@ def scrape(sections):
                 id=django.utils.text.slugify(title),
                 name=title,
                 active=active,
+                mission=project.mission,
             )
             db_project.save()
 
