@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand, CommandError
-from mandelbrot.models import Expert, OtherName, Role, Office
+from mandelbrot.models import Expert, OtherName, Role, Office, Project
 
 import datetime as dt
 
@@ -10,6 +10,14 @@ import os
 def role_importer(stream):
     for mapping in stream:
         Role.objects.get_or_create(**mapping)
+
+
+def workplace_importer(stream):
+    for mapping in stream:
+        project = Project.objects.get(id=mapping['project'])
+        office = Office.objects.get(id=mapping['office'])
+        project.offices.add(office)
+        project.save()
 
 
 def office_importer(stream):
@@ -61,9 +69,10 @@ def name_importer(stream):
 
 
 FLAVORS = (
-    ("names.csv",   name_importer),
-    ("roles.csv",   role_importer),
-    ("offices.csv", office_importer),
+    ("names.csv",      name_importer),
+    ("roles.csv",      role_importer),
+    ("offices.csv",    office_importer),
+    ("workplaces.csv", workplace_importer),
 )
 
 
