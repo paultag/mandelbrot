@@ -10,7 +10,12 @@ from .utils import serialize, JSONEncoderPlus
 
 
 def home(request):
-    return render(request, 'mandelbrot/home.html', {"experts": Expert.objects.all()})
+    return render(request, 'mandelbrot/home.html', {
+        "past_experts": Expert.objects.filter(active=False),
+        "past_projects": Project.objects.filter(active=False),
+        "current_experts": Expert.objects.filter(active=True),
+        "current_projects": Project.objects.filter(active=False),
+    })
 
 
 # Class-based view utility classes {{{

@@ -20,13 +20,13 @@
 			    <tbody>
 			      <tr>
 			        <th scope="row">People</th>
-			        <td>{{people.active.count}}</td>
-			        <td>{{people.inactive.count}}</td>
+			        <td>{{current_experts|length}}</td>
+			        <td>{{past_experts|length}}</td>
 			      </tr>
 			      <tr>
 			        <th scope="row">Projects</th>
-			        <td>{{projects.active.count}}</td>
-			        <td>{{people.inactive.count}}</td>
+			        <td>{{current_projects|length}}</td>
+			        <td>{{past_projects|length}}</td>
 			      </tr>
 			    </tbody>
 			  </table>
