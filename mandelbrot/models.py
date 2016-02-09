@@ -98,7 +98,7 @@ CONTACT_TYPES = [
 class ContactDetail(models.Model):
     who = models.ForeignKey('Expert', related_name="contact_details")
     type = models.CharField(max_length=128, choices=CONTACT_TYPES)
-    label = models.CharField(max_length=128)
+    label = models.CharField(max_length=128, blank=True)
     value = models.CharField(max_length=128)
     note = models.CharField(max_length=128, blank=True)
     preferred = models.BooleanField()
