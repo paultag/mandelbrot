@@ -1,7 +1,9 @@
 {% load humanize %}
 
+<script src="/static/js/cards.min.js"></script>
+
 {% for project in projects %}
-          <div class="usa-width-one-whole mdl-result-card">
+          <div class="usa-width-one-whole mdl-result-card" data-detail="{% url "project" project.id %}">
             <div class="usa-width-two-thirds">
               <h1 class="mdl-name"><a href="{% url "project" project.id %}" >{{project.name}}</a></h1>
               <div "mdl-meta">
