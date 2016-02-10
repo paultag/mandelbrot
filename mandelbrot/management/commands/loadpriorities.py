@@ -42,7 +42,7 @@ def agency(id):
     a, _ = Agency.objects.get_or_create(id=id)
     if a.name == '':
         a.name = {
-            'VA': 'Veteran\'s Affairs',
+            'VA': 'Veterans Affairs',
             'DHS': "Homeland Security",
             'DOD': "Defense",
             "DOJ": "Justice",
