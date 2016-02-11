@@ -40,26 +40,6 @@ def role(name):
 def agency(id):
     id = id.upper()
     a, _ = Agency.objects.get_or_create(id=id)
-    if a.name == '':
-        a.name = {
-            'VA': 'Veterans Affairs',
-            'DHS': "Homeland Security",
-            'DOD': "Defense",
-            "DOJ": "Justice",
-            "DOS": "State",
-            "ED": "Education",
-            'HHS': "Health and Human Services",
-            "IRS": "Internal Revenue Service",
-            "HQ": "Office of the President",
-            "EOP": "Office of the President",
-            "SBA": "Small Business Administration",
-            "SSA": "Social Security Administration",
-            "DOC": "Commerce",
-            "OPM": "Office of Personnel Management",
-            "DOT": "Transportation",
-            "USTR": "United States Trade Representative",
-            "DOI": "Interior",
-        }.get(id, id)
     if a.photo_url == '':
         a.photo_url = '/static/img/seals/{}.png'.format(id.lower())
     return a

@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand, CommandError
-from mandelbrot.models import Expert, OtherName, Role, Office, Project
+from mandelbrot.models import Expert, OtherName, Role, Office, Project, Agency
 
 import datetime as dt
 
@@ -78,11 +78,27 @@ def name_importer(stream):
 
 # }}}
 
+# Agencies {{{
+
+def agency_importer(stream):
+    for mapping in stream:
+        try:
+            office = Agency.objects.get(id=mapping['id'])
+        except Office.DoesNotExist:
+            office = Agency(id=mapping['id'])
+        for k, v in mapping.items():
+            setattr(office, k, v)
+
+        office.save()
+
+# }}}
+
 FLAVORS = (
     ("names.csv",      name_importer),
     ("roles.csv",      role_importer),
     ("offices.csv",    office_importer),
     ("workplaces.csv", workplace_importer),
+    ("agencies.csv",   agency_importer),
 )
 
 
