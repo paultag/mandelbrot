@@ -7,3 +7,4 @@ dj-static
 
 # psycopg2
 # github3.py
+# django-debug-toolbar

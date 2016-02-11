@@ -80,3 +80,10 @@ try:
     from local_settings import *
 except ImportError:
     pass
+
+if DEBUG:
+    try:
+        import debug_toolbar
+        INSTALLED_APPS += ('debug_toolbar',)
+    except ImportError:
+        pass
