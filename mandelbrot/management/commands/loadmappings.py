@@ -50,6 +50,7 @@ def sort_names(stream):
     for mapping in stream:
         expert = Expert.objects.get(id=mapping['id'])
         expert.sort_name = mapping['sort_name']
+        expert.save()
 
 # }}}
 
