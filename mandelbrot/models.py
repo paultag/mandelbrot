@@ -110,6 +110,7 @@ class ContactDetail(models.Model):
     value = models.CharField(max_length=128)
     note = models.CharField(max_length=128, blank=True)
     preferred = models.BooleanField()
+    official = models.BooleanField()
 
     def __str__(self):
         return "<ContactDetail who='{}' type='{}' value='{}'>".format(
