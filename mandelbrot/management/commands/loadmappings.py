@@ -44,6 +44,16 @@ def office_importer(stream):
 
 # }}}
 
+# Sort name {{{
+
+def sort_names(stream):
+    for mapping in stream:
+        print(mapping)
+        expert = Expert.objects.get(id=mapping['id'])
+        expert.sort_name = mapping['sort_name']
+
+# }}}
+
 # Name {{{
 
 def name_importer(stream):
@@ -99,6 +109,7 @@ FLAVORS = (
     ("offices.csv",    office_importer),
     ("workplaces.csv", workplace_importer),
     ("agencies.csv",   agency_importer),
+    ("sort_names.csv", sort_names),
 )
 
 
