@@ -24,7 +24,7 @@ class APIView(MandelbrotView):
 class ExpertView(APIView, ExpertView):
     fields = (
         'id', 'name', 'photo_url', 'title', 'bio', 'active',
-        'start_date', 'end_date',
+        'start_date', 'end_date', 'phonetic_name', 'sort_name',
 
         'interests.name'
 
@@ -32,7 +32,7 @@ class ExpertView(APIView, ExpertView):
 
         'contact_details.type', 'contact_details.value',
         'contact_details.label', 'contact_details.note',
-        'contact_details.preferred',
+        'contact_details.preferred', 'contact_details.official',
 
         'memberships.project.id', 'memberships.project.name',
         'memberships.project.active', 'memberships.start_date',
@@ -47,11 +47,11 @@ class ExpertView(APIView, ExpertView):
 class ExpertsView(APIView, ExpertsView):
     fields = (
         'id', 'name', 'photo_url', 'title', 'active',
-        'start_date', 'end_date',
+        'start_date', 'end_date', 'phonetic_name', 'sort_name',
 
         'contact_details.type', 'contact_details.value',
         'contact_details.label', 'contact_details.note',
-        'contact_details.preferred',
+        'contact_details.preferred', 'contact_details.official',
     )
 
 
