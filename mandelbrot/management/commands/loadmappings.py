@@ -6,11 +6,15 @@ import datetime as dt
 import csv
 import os
 
+# Role {{{
 
 def role_importer(stream):
     for mapping in stream:
         Role.objects.get_or_create(**mapping)
 
+# }}}
+
+# Workplace {{{
 
 def workplace_importer(stream):
     for mapping in stream:
@@ -19,6 +23,9 @@ def workplace_importer(stream):
         project.offices.add(office)
         project.save()
 
+# }}}
+
+# Office {{{
 
 def office_importer(stream):
     text_fields = ['address', 'tips']
@@ -35,7 +42,9 @@ def office_importer(stream):
 
         office.save()
 
+# }}}
 
+# Name {{{
 
 def name_importer(stream):
     def fix_mapping(mapping):
@@ -67,6 +76,7 @@ def name_importer(stream):
                 setattr(name, k, v)
             name.save()
 
+# }}}
 
 FLAVORS = (
     ("names.csv",      name_importer),
@@ -86,3 +96,6 @@ class Command(BaseCommand):
         for csv_path, function in FLAVORS:
             with open(os.path.join(path, csv_path), 'r') as fd:
                 function(csv.DictReader(fd))
+
+
+# vim: foldmethod=marker
