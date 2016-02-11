@@ -16,6 +16,8 @@ class Expert(models.Model):
     active = models.BooleanField()
     start_date = models.DateField()
     end_date = models.DateField(blank=True, null=True)
+    sort_name = models.CharField(max_length=128)
+    phonetic_name = models.CharField(max_length=128, blank=True)
 
     @classmethod
     def get_active(cls, *args):
