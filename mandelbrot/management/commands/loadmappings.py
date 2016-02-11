@@ -48,7 +48,6 @@ def office_importer(stream):
 
 def sort_names(stream):
     for mapping in stream:
-        print(mapping)
         expert = Expert.objects.get(id=mapping['id'])
         expert.sort_name = mapping['sort_name']
 
