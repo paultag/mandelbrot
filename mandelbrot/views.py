@@ -63,7 +63,12 @@ class ExpertsView(BoringObjectsView):
     model = Expert
 
     def lookup(self, request):
-        return Expert.get_active().order_by('sort_name')
+        return Expert.get_active().order_by('sort_name').prefetch_related(
+            'contact_details',
+            'memberships',
+            'memberships__project',
+            'memberships__project__agencies',
+        )
 
 
 class ExpertView(BoringObjectView):

@@ -64,14 +64,20 @@ class Expert(models.Model):
         return (detail, created)
 
     def get_preferred_contact_details(self):
-        return self.contact_details.filter(preferred=True)
+        for detail in self.contact_details.all():
+            if detail.preferred:
+                yield detail
 
     def get_active_agencies(self):
-        return Agency.objects.filter(
-            projects__memberships__who=self,
-            projects__memberships__end_date=None,
-            projects__active=True,
-        ).distinct()
+        seen = set()
+        for membership in self.memberships.all():
+            if membership.end_date is None or membership.project.active == False:
+                continue
+            for agency in membership.project.agencies:
+                if agency in seen:
+                    continue
+                seen.add(agency.id)
+                yield agency.id
 
     def get_active_memberships(self):
         return self.memberships.filter(
