@@ -54,6 +54,7 @@ def scrape():
                 label=None,
                 type='phone',
                 preferred=True,
+                official=False,
             )
             if created:
                 detail.label = "From Slack"
@@ -64,6 +65,7 @@ def scrape():
             label=None,
             type='slack',
             preferred=True,
+            official=False,
         )
         if created:
             detail.label = "From Slack"

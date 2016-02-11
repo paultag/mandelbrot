@@ -38,7 +38,10 @@ class Expert(models.Model):
     def __str__(self):
         return "<Expert '{}'>".format(self.name)
 
-    def add_contact_detail(self, type, value, label=None, note=None, preferred=None):
+    def add_contact_detail(
+        self, type, value,
+        label=None, note=None, preferred=None, official=None
+    ):
         created = False
         try:
             detail = self.contact_details.get(value=value, type=type)
@@ -47,9 +50,13 @@ class Expert(models.Model):
                 who=self, type=type, value=value,
                 preferred=preferred if preferred is not None else False,
                 label=label if label is not None else "",
+                official=official if official is not None else False,
             )
             self.contact_details.add(detail)
             created = True
+
+        if official is not None:
+            detail.official = official
 
         if label is not None:
             detail.label = label

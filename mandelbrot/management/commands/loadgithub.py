@@ -81,6 +81,7 @@ def scrape_expert(org, github_user):
             label=None,
             type=type,
             preferred=preferred,
+            official=False,
         )
         if created:
             detail.label = "From GitHub"
