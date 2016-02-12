@@ -18,8 +18,9 @@ Importing data
 ```
 ./manage.py migrate
 ./manage.py loadsalesforce ~/staff.csv
+./manage.py loadbios ../bios/
 ./manage.py loadpriorities
-./manage.py loadmappings ~/mappings/
+./manage.py loadmappings ~/mandelbrot-mappings/
 ./manage.py loadgithub
 ./manage.py loadpriorities
 ./manage.py dedupe
