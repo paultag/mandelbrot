@@ -22,5 +22,6 @@ Importing data
 ./manage.py loadmappings ~/mappings/
 ./manage.py loadgithub
 ./manage.py loadpriorities
+./manage.py dedupe
 ./manage.py runserver
 ```
