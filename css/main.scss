@@ -269,7 +269,7 @@ ul.mdl-nav-links > li a {
     margin: 0 auto;
     width: rem(250px);
     height: rem(250px);
-    border: 1px solid $color-mdl-light-grey;
+    // border: 1px solid $color-mdl-light-grey;
     border-radius: rem(250px);
     margin-bottom: rem(20px);
 }
@@ -277,7 +277,6 @@ ul.mdl-nav-links > li a {
 .mdl-profile a {
   text-align: center;
   color: darken($color-white, 0%);
-  padding-right: rem(20px);
   font-weight: 300;
 }
 
@@ -352,6 +351,10 @@ making .mdl-app-segment a grandchild element of .mdl-app.
 /* ===========================*
 * Profile Page             
 * ============================*/
+.mdl-profile .mdl-social {
+  margin-right: rem(20px);
+}
+
 .mdl-sidebar {
     padding-right: rem(40px);
   .mdl-pic {
