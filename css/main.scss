@@ -67,6 +67,14 @@ a:hover {
   text-decoration: none;
 }
 
+textarea:focus, input:focus{
+    outline: none;
+}
+
+*:focus {
+    outline: none;
+}
+
 .mdl-app .usa-heading-alt {
   color: $color-mdl-red;
   font-weight: 500;
@@ -400,6 +408,9 @@ making .mdl-app-segment a grandchild element of .mdl-app.
 
 .mdl-social-block > a.usa-button {
   background-color: $color-mdl-blue;
+  &:hover {
+    background-color: darken($color-mdl-blue,20%);
+  }
 }
 
 
@@ -430,6 +441,9 @@ making .mdl-app-segment a grandchild element of .mdl-app.
   }
   &:hover {
     box-shadow: 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  &:hover .mdl-name {
+    color: darken($color-mdl-blue,20%);
   }
 }
 
@@ -467,7 +481,7 @@ making .mdl-app-segment a grandchild element of .mdl-app.
   }
 }
 
-// office page
+// Office page
 .mdl-office .mdl-map {
   width: rem(650px);
   height: rem(400px);
