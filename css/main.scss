@@ -63,6 +63,11 @@ p, h1, h2, h3, h4, h5, h6 {
   font-family: $font-sans;
 }
 
+a:focus {
+  box-shadow:none;
+  outline: 0;
+}
+
 a:hover {
   text-decoration: none;
 }
@@ -71,9 +76,6 @@ textarea:focus, input:focus{
     outline: none;
 }
 
-*:focus {
-    outline: none;
-}
 
 .mdl-app .usa-heading-alt {
   color: $color-mdl-red;
