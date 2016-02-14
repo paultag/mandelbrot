@@ -83,9 +83,9 @@ textarea:focus, input:focus{
 }
 
 .mdl-app a, .mdl-app a:visited {
-  color: $color-primary;
+  color: $color-mdl-blue;
   &:hover {
-     color: darken($color-primary, 20%);
+     color: darken($color-mdl-blue, 20%);
   }
 }
 
@@ -235,7 +235,7 @@ ul.mdl-nav-links > li a {
   display: inline-block;
   text-align: center;
   text-transform: uppercase;
-  padding: 0 0 rem(10px) rem(30px);
+  padding: 0 rem(15px) 0 rem(15px);
   text-decoration: none;
   &:hover {
     color: darken($color_white, 10%)
@@ -445,7 +445,7 @@ making .mdl-app-segment a grandchild element of .mdl-app.
     box-shadow: 2px 4px rgba(0, 0, 0, 0.2);
   }
   &:hover .mdl-name {
-    color: darken($color-mdl-blue,20%);
+    color: darken($color-mdl-blue, 20%);
   }
 }
 
