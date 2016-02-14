@@ -18,7 +18,7 @@
 {% for membership in project.get_active_memberships %}
             <a class="mdl-pic clearfix tooltips" href="{% url "expert" membership.who.id %}">
               {% if membership.who.photo_url == "" %}
-              <img src="/static/img/default-pic.png" />              
+              <img src="/static/img/default-pic.png" />
               {% else %}
               <img src="{{membership.who.photo_url}}" />
               {% endif %}
