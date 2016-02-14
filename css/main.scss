@@ -63,6 +63,10 @@ p, h1, h2, h3, h4, h5, h6 {
   font-family: $font-sans;
 }
 
+a:hover {
+  text-decoration: none;
+}
+
 .mdl-app .usa-heading-alt {
   color: $color-mdl-red;
   font-weight: 500;
@@ -70,6 +74,9 @@ p, h1, h2, h3, h4, h5, h6 {
 
 .mdl-app a, .mdl-app a:visited {
   color: $color-primary;
+  &:hover {
+     color: darken($color-primary, 20%);
+  }
 }
 
 .blue-bg {
@@ -191,7 +198,7 @@ a:hover.tooltips span {
   color: $color-white;
   margin-right: rem(20px);
   &:hover {
-    color: darken($color_white, 10%);
+    color: darken($color_white, 20%);
     text-decoration: none;
   }
 }
@@ -274,11 +281,16 @@ ul.mdl-nav-links > li a {
     margin-bottom: rem(20px);
 }
 
-.mdl-profile a {
+.mdl-profile .mdl-social {
   text-align: center;
   color: darken($color-white, 0%);
   font-weight: 300;
+  margin-right: rem(20px);
+  &:hover {
+    color: darken($color-white, 20%);
+  }
 }
+
 
 .mdl-profile i, .mdl-project i {
   padding-right: rem(10px);
@@ -351,9 +363,6 @@ making .mdl-app-segment a grandchild element of .mdl-app.
 /* ===========================*
 * Profile Page             
 * ============================*/
-.mdl-profile .mdl-social {
-  margin-right: rem(20px);
-}
 
 .mdl-sidebar {
     padding-right: rem(40px);
@@ -361,6 +370,9 @@ making .mdl-app-segment a grandchild element of .mdl-app.
     border: 1px solid $color-mdl-light-grey;  
     border-radius: rem(3px);
   }
+}
+.mdl-sidebar li {
+  padding-bottom: 5px;
 }
 
 
