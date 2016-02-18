@@ -357,7 +357,7 @@ making .mdl-app-segment a grandchild element of .mdl-app.
   padding: 10px 20px 40px 20px;
   color: $color-mdl-blue;
   box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.3);
-  border-radius: 3px;
+  border-radius: 2px;
   width: 50%;
   margin: 2em auto;
   table {
@@ -375,10 +375,9 @@ making .mdl-app-segment a grandchild element of .mdl-app.
 * ============================*/
 
 .mdl-sidebar {
-    padding-right: rem(40px);
   .mdl-pic {
     border: 1px solid $color-mdl-light-grey;  
-    border-radius: rem(3px);
+    border-radius: 2px;
   }
 }
 .mdl-sidebar li {
@@ -429,7 +428,7 @@ making .mdl-app-segment a grandchild element of .mdl-app.
   padding: rem(20px);
   background-color: $color-white;
   color: $color-mdl-blue;
-  border-radius: rem(3px);
+  border-radius: 2px;
   min-height: rem(250px);
   margin-bottom: rem(20px);
   .mdl-name, .mdl-meta {
@@ -475,7 +474,7 @@ making .mdl-app-segment a grandchild element of .mdl-app.
     margin: 0;
   }
   .mdl-pic {
-    border-radius: 3px;
+    border-radius: 2px;
     float: right;
     width: rem(32px);
     height: rem(32px);
