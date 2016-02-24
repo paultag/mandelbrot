@@ -47,7 +47,7 @@ class Command(BaseCommand):
 
         start_date = None
         for key in [
-            'Applicant Lookup: Projected Start Date',
+            'Projected Start Date',
             'Applicant Lookup: Revised Start Date',
             'Actual Start Date',
         ]:
