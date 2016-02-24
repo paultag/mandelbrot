@@ -3,14 +3,13 @@ import django.utils.text
 from mandelbrot.models import Project, ProjectMember, Agency, Expert, Role
 
 import os
+import sys
 import datetime as dt
 import importlib.machinery
 
-loader = importlib.machinery.SourceFileLoader(
-    'priorities',
-    '../usds/scripts/priorities_lint.py'
-)
-priorities = loader.load_module()
+sys.path.append('../usds/scripts/priorities-lint/')
+from priorities_lint.parser import parse_document
+
 priorities_md = '../usds/administration/priorities.md'
 
 
@@ -23,7 +22,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         with open(priorities_md, 'r') as fd:
-            (sections, _) = priorities.parse_document(fd.read())
+            (sections, _) = parse_document(fd.read())
 
         for project in scrape(sections):
             pass
