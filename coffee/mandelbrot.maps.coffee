@@ -14,7 +14,7 @@ renderMap = (domMap) ->
     latitude = domMap.getAttribute 'data-latitude'
     longitude = domMap.getAttribute 'data-longitude'
     map = L.map(domMap).setView([latitude, longitude], 15)
-    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {}).addTo(map)
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {}).addTo(map)
     map.removeControl map.zoomControl
     map.removeControl map.attributionControl
     L.marker([latitude, longitude]).addTo(map)
