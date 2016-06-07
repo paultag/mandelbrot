@@ -47,9 +47,8 @@ class Command(BaseCommand):
 
         start_date = None
         for key in [
-            'Projected Start Date',
-            'Applicant Lookup: Revised Start Date',
             'Actual Start Date',
+            'Projected Start Date',
         ]:
             data = who[key]
             if data != "":
